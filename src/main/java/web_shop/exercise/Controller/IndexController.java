@@ -54,6 +54,24 @@ public class IndexController
         return "redirect:/";
     }
 
+    @GetMapping("/delete/{id}")
+    public String slet(@PathVariable("id") long id, Model model)
+    {
+
+        //Should return the boolean value and send it to index
+        if (productService.Delete(id))
+        {
+            model.addAttribute("status", "Element" + id + "slettet");
+        }
+        else
+        {
+            model.addAttribute("status", "Element" + id + "kunne ikke slettes!");
+        }
+
+        model.addAttribute("status", productService.Delete(id));
+        return "redirect:/";
+    }
+
 
 }
 

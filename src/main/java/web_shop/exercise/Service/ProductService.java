@@ -41,4 +41,10 @@ public class ProductService
         updateOk = productRepository.Update(product);
         return updateOk;
     }
+
+    public boolean Delete(long id)
+    {
+
+        return productRepository.Delete(id);
+    }
 }

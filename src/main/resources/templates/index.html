@@ -21,9 +21,19 @@
             <td th:text="${product.description}"></td>
             <td>
                 <a th:href="@{'/update/' + ${product.id}}">Opdater</a>
+                <a th:href="@{'/delete/' + ${product.id}}">Slet</a>
             </td>
         </tr>
     </table>
+
+    <!-- Can not make it work! -->
+    <!-- Check if errorMessage is not null and not empty -->
+    <div th:if="${status}" th:utext="${status}" class="error">
+
+    </div>
+
+
+
 
     <a href="create">Opret produkt</a>
 
