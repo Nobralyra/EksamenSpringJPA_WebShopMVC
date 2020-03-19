@@ -6,23 +6,25 @@
 </head>
 <body>
 
-<h1>Vareliste</h1>
-<table>
-    <tr>
-        <th hidden>Id</th>
-        <th>Varenavn</th>
-        <th>Pris</th>
-        <th>Beskrivelse</th>
-    </tr>
-    <tr>
-    <tr th:each="product : ${products}">
-        <td hidden th:text="${product.id}" ></td>
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.description}"></td>
-    </tr>
-    </tr>
-</table>
+    <h1>Vareliste</h1>
+    <table>
+        <tr>
+            <th hidden>Id</th>
+            <th>Varenavn</th>
+            <th>Pris</th>
+            <th>Beskrivelse</th>
+        </tr>
+        <tr>
+        <tr th:each="product : ${products}">
+            <td hidden th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+        </tr>
+        </tr>
+    </table>
+
+    <a href="create">Opret produkt</a>
 
 
 </body>

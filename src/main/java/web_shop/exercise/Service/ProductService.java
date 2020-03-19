@@ -14,7 +14,7 @@ public class ProductService
     @Autowired
     ProductRepository productRepository;
 
-    public List<Product> readAll()
+    public List<Product> ReadAll()
     {
         List<Product> productList = new ArrayList<>();
 
@@ -23,5 +23,10 @@ public class ProductService
             productList.add(product);
         }
         return productList;
+    }
+
+    public void Create(Product product)
+    {
+        productRepository.Create(product);
     }
 }

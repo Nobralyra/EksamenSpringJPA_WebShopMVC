@@ -27,4 +27,10 @@ public class ProductRepository
     {
         return listOfProducts;
     }
+
+    //add new product to Product Collection
+    public void Create(Product product)
+    {
+        listOfProducts.add(product);
+    }
 }
