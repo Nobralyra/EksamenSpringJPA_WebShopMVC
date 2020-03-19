@@ -9,18 +9,18 @@
 <h1>Vareliste</h1>
 <table>
     <tr>
-        <!-- Should be hidden
-        <th>Id</th>
-        -->
+        <th hidden>Id</th>
         <th>Varenavn</th>
         <th>Pris</th>
         <th>Beskrivelse</th>
     </tr>
     <tr>
-        <!-- Placeholders for now -->
-        <td>Kaffe</td>
-        <td>45,0</td>
-        <td>Lækker kaffe</td>
+    <tr th:each="product : ${products}">
+        <td hidden th:text="${product.id}" ></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+    </tr>
     </tr>
 </table>
 
