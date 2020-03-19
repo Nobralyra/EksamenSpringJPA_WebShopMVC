@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web_shop.exercise.Model.Product;
 import web_shop.exercise.Service.ProductService;
@@ -35,5 +36,24 @@ public class IndexController
         productService.Create(product);
         return "redirect:/";
     }
+
+    //use PathVariable to maå id from list on web page
+    @GetMapping("/update/{id}")
+    public String Update(@PathVariable("id") long id, Model model)
+    {
+        //Tilføj Animal med id til model view
+        model.addAttribute("products", productService.Read(id));
+        return "/update";
+    }
+
+    //update animal
+    @PostMapping("/update")
+    public String Update(@ModelAttribute Product product)
+    {
+        productService.Update(product);
+        return "redirect:/";
+    }
+
+
 }
 

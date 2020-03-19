@@ -14,13 +14,14 @@
             <th>Pris</th>
             <th>Beskrivelse</th>
         </tr>
-        <tr>
         <tr th:each="product : ${products}">
             <td hidden th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>
-        </tr>
+            <td>
+                <a th:href="@{'/update/' + ${product.id}}">Opdater</a>
+            </td>
         </tr>
     </table>
 

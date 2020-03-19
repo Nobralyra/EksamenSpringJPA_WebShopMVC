@@ -14,6 +14,16 @@ public class ProductService
     @Autowired
     ProductRepository productRepository;
 
+    public void Create(Product product)
+    {
+        productRepository.Create(product);
+    }
+
+    public Product Read(long id)
+    {
+        return productRepository.Read(id);
+    }
+
     public List<Product> ReadAll()
     {
         List<Product> productList = new ArrayList<>();
@@ -25,8 +35,10 @@ public class ProductService
         return productList;
     }
 
-    public void Create(Product product)
+    public boolean Update(Product product)
     {
-        productRepository.Create(product);
+        boolean updateOk = false;
+        updateOk = productRepository.Update(product);
+        return updateOk;
     }
 }

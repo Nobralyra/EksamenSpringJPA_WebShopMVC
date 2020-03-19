@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProductRepository
+public class ProductRepository implements ICrudRepository<Product>
 {
     //Collection for handling test data
     private List<Product> listOfProducts = new ArrayList<>();
@@ -23,14 +23,59 @@ public class ProductRepository
         this.listOfProducts.add(new Product(6, "Pepsi Max", 5.0,"Nul kaloier og god smag"));
     }
 
+    @Override
+    //add new product to Product Collection
+    public void Create(Product product)
+    {
+        listOfProducts.add(product);
+    }
+
+    @Override
+    public Product Read(long id)
+    {
+        //find element med id
+        int i = 0;
+        while (i < listOfProducts.size())
+        {
+            if (listOfProducts.get(i).getId() == id)
+            {
+                return listOfProducts.get(i);
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public List<Product> ReadAll()
     {
         return listOfProducts;
     }
 
-    //add new product to Product Collection
-    public void Create(Product product)
+    @Override
+    public boolean Update(Product product)
     {
-        listOfProducts.add(product);
+        //Find element der skal opdateres i animals
+
+        for(int i = 0; i < listOfProducts.size(); i++)
+        {
+            if (listOfProducts.get(i).getId() == product.getId())
+            {
+                //opdtater element (erstat med ny udgave)
+                listOfProducts.set(i, product);
+                return true;
+            }
+        }
+        //element ikke fundet
+        return false;
+    }
+
+    @Override
+    public boolean Delete(long id)
+    {
+        return false;
     }
 }
