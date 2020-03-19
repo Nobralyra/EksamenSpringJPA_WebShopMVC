@@ -37,16 +37,16 @@ public class IndexController
         return "redirect:/";
     }
 
-    //use PathVariable to maå id from list on web page
+    //use PathVariable to fetch id from list on web page
     @GetMapping("/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
     {
-        //Tilføj Animal med id til model view
+        //add product with id to the model view
         model.addAttribute("products", productService.Read(id));
         return "/update";
     }
 
-    //update animal
+    //update product
     @PostMapping("/update")
     public String Update(@ModelAttribute Product product)
     {

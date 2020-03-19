@@ -33,7 +33,7 @@ public class ProductRepository implements ICrudRepository<Product>
     @Override
     public Product Read(long id)
     {
-        //find element med id
+        //find element by id
         int i = 0;
         while (i < listOfProducts.size())
         {
@@ -58,18 +58,18 @@ public class ProductRepository implements ICrudRepository<Product>
     @Override
     public boolean Update(Product product)
     {
-        //Find element der skal opdateres i animals
+        //Find the element that should be updated in Product
 
         for(int i = 0; i < listOfProducts.size(); i++)
         {
             if (listOfProducts.get(i).getId() == product.getId())
             {
-                //opdtater element (erstat med ny udgave)
+                //Opdates the element (Overrides the old product with the new)
                 listOfProducts.set(i, product);
                 return true;
             }
         }
-        //element ikke fundet
+        //element not found
         return false;
     }
 
