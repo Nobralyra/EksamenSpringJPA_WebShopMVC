@@ -84,6 +84,12 @@ public class ProductRepository implements ICrudRepository<Product>
                 listOfProducts.remove(i);
                 return true;
             }
+            else if (listOfProducts.get(i+1).getId() == id)
+            {
+                //Deletes the product
+                listOfProducts.remove(i);
+                return true;
+            }
             else
             {
                 i++;

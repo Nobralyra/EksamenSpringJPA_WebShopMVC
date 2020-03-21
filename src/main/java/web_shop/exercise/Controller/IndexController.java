@@ -25,13 +25,14 @@ public class IndexController
     }
 
     @GetMapping("/create")
-    public String Create()
+    public String Create(Product product, Model model)
     {
+        model.addAttribute("products", product);
         return "/create";
     }
 
     @PostMapping("/create")
-    public String CreateAnimal(@ModelAttribute Product product)
+    public String CreateProduct(@ModelAttribute Product product)
     {
         productService.Create(product);
         return "redirect:/";
@@ -59,19 +60,22 @@ public class IndexController
     {
 
         //Should return the boolean value and send it to index
-        if (productService.Delete(id))
+
+        try
         {
-            model.addAttribute("status", "Element" + id + "slettet");
+            model.addAttribute("test", productService.Delete(id));
+            //Can not get this to index.html
+            model.addAttribute("status", "Element " + id + " slettet");
         }
-        else
+        catch (Exception e)
         {
-            model.addAttribute("status", "Element" + id + "kunne ikke slettes!");
+            //Can not use redirect because I then loose the message
+            model.addAttribute("status", "Element " + id + " kunne ikke slettes!");
+            return "/index";
         }
 
-        model.addAttribute("status", productService.Delete(id));
         return "redirect:/";
     }
 
 
 }
-
