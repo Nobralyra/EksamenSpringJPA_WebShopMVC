@@ -1,18 +1,28 @@
 package web_shop.exercise.Model;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
 public class Category
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+    private String categoryName;
+
+    //On the joined table
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products;
 
     public Category()
     {
     }
 
-    public Category(long id, String name)
+    public Category(long id, String categoryName)
     {
         this.id = id;
-        this.name = name;
+        this.categoryName = categoryName;
     }
 
     public long getId()
@@ -25,13 +35,23 @@ public class Category
         this.id = id;
     }
 
-    public String getName()
+    public String getCategoryName()
     {
-        return name;
+        return categoryName;
     }
 
-    public void setName(String name)
+    public void setCategoryName(String name)
     {
-        this.name = name;
+        this.categoryName = name;
+    }
+
+    public Set<Product> getProducts()
+    {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products)
+    {
+        this.products = products;
     }
 }

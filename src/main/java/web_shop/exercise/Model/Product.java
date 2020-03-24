@@ -1,21 +1,43 @@
 package web_shop.exercise.Model;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Entity
 public class Product
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+    private String productName;
     private double price;
-    private String description;
+
+    @Lob
+    private String productDescription;
+
+    @ManyToMany
+    protected Set<Category> categories = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER, optional=false)
+    @JoinColumn(name="company_id", nullable = false)
+    protected Company company;
+
+    //Product is the owner of CompanyDescription
+    //If we delete a Product that is going to persist down and delete CompanyDescription.
+    @OneToOne(cascade = CascadeType.ALL)
+    protected CompanyDescription companyDescription;
 
     public Product()
     {}
 
-    public Product(long id, String name, double price, String description)
+    public Product(long id, String productName, double price, String productDescription)
     {
         this.id = id;
-        this.name = name;
+        this.productName = productName;
         this.price = price;
-        this.description = description;
+        this.productDescription = productDescription;
     }
 
     public long getId()
@@ -28,14 +50,14 @@ public class Product
         this.id = id;
     }
 
-    public String getName()
+    public String getProductName()
     {
-        return name;
+        return productName;
     }
 
-    public void setName(String name)
+    public void setProductName(String name)
     {
-        this.name = name;
+        this.productName = name;
     }
 
     public double getPrice()
@@ -48,13 +70,43 @@ public class Product
         this.price = price;
     }
 
-    public String getDescription()
+    public String getProductDescription()
     {
-        return description;
+        return productDescription;
     }
 
-    public void setDescription(String description)
+    public void setProductDescription(String description)
     {
-        this.description = description;
+        this.productDescription = description;
+    }
+
+    public Set<Category> getCategories()
+    {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories)
+    {
+        this.categories = categories;
+    }
+
+    public Company getCompany()
+    {
+        return company;
+    }
+
+    public void setCompany(Company company)
+    {
+        this.company = company;
+    }
+
+    public CompanyDescription getCompanyDescription()
+    {
+        return companyDescription;
+    }
+
+    public void setCompanyDescription(CompanyDescription companyDescription)
+    {
+        this.companyDescription = companyDescription;
     }
 }

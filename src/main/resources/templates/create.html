@@ -5,30 +5,30 @@
 </head>
 <body>
 
-<form th:action="@{/create}" method="post">
-    <div class="col-auto">
+    <form th:action="@{/create}" method="post">
+        <div class="col-auto">
 
-        <div class="col-md-6">
-            <h1>Create Product</h1>
-        </div>
+            <div class="col-md-6">
+                <h1>Create Product</h1>
+            </div>
 
-        <div class="form-group col-md-6" >
-            <input type="text" name="name" class="form-control" placeholder="Navn" th:field="${products.name}">
-        </div>
+            <div class="form-group col-md-6" >
+                <input type="text" name="name" class="form-control" placeholder="Navn" th:field="${products.productName}">
+            </div>
 
-        <div class="form-group col-md-6">
-            <input type="text" name="price" class="form-control" placeholder="Pris" th:field="${products.price}">
-        </div>
+            <div class="form-group col-md-6">
+                <input type="text" name="price" class="form-control" placeholder="Pris" th:field="${products.price}">
+            </div>
 
-        <div class="form-group col-md-6">
-            <input type="text" name="description" class="form-control" placeholder="Beskrivelse" th:field="${products.description}">
-        </div>
+            <div class="form-group col-md-6">
+                <input type="text" name="description" class="form-control" placeholder="Beskrivelse" th:field="${products.productDescription}">
+            </div>
 
-        <div class="form-group col-md-6">
-            <button type="submit" class="btn btn-primary">Opret</button>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Opret</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 
 <footer th:replace="fragments/footer :: footerElement"></footer>
 </body>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerElement">
+
+    <title>Details</title>
+
+</head>
+<body>
+<div class="col-auto">
+
+    <h1>Detaljer for produkt</h1>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th hidden>Company Id</th>
+            <th>Virksomhed</th>
+            <th hidden>Company Description Id</th>
+            <th>Virksomhedsbeskrivelse</th>
+            <th hidden>Category Id</th>
+            <th>Kategori</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--
+       <tr th:each="product : ${products}">
+           <td hidden th:text="${product.id}"></td>
+           <td th:text="${product.productName}"></td>
+           <td th:text="${product.price}"></td>
+           <td th:text="${product.productDescription}"></td>
+           <td>
+               <a class="btn btn-primary" th:href="@{'/details/' + ${product.id}}" role="button">Flere detaljer</a>
+               <a class="btn btn-primary" th:href="@{'/update/' + ${product.id}}" role="button">Opdater</a>
+               <a class="btn btn-primary" th:href="@{'/delete/' + ${product.id}}" role="button">Slet</a>
+           </td>
+       </tr>
+       -->
+       </tbody>
+   </table>
+
+   <!-- Check if errorMessage is not null and not empty
+   <div th:if="${status}" th:utext="${status}" class="error"></div>
+-->
+    <a class="btn btn-primary" th:href="@{/create}" role="button">Opret produkt</a>
+
+</div>
+<footer th:replace="fragments/footer :: footerElement"></footer>
+</body>
+</html>

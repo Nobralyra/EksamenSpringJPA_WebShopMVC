@@ -1,6 +1,5 @@
 package web_shop.exercise.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,19 +7,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web_shop.exercise.Model.Product;
-import web_shop.exercise.Service.ProductService;
+import web_shop.exercise.Service.Product.IProductService;
 
 @Controller
 public class IndexController
 {
-    @Autowired
-    ProductService productService;
+    private final IProductService iProductService;
+
+    public IndexController(IProductService iProductService)
+    {
+        this.iProductService = iProductService;
+    }
 
     @GetMapping({"", "/"})
     public String IndexPage(Model model)
     {
-        //add all animals to view model from animalService
-        model.addAttribute("products", productService.ReadAll());
+        //add all products to view model from IProductService
+        model.addAttribute("products", iProductService.GetProducts());
+
+
         return ("/index");
     }
 
@@ -32,9 +37,9 @@ public class IndexController
     }
 
     @PostMapping("/create")
-    public String CreateProduct(@ModelAttribute Product product)
+    public String CreateProduct(@ModelAttribute Product product, Model model)
     {
-        productService.Create(product);
+        iProductService.Save(product);
         return "redirect:/";
     }
 
@@ -43,7 +48,7 @@ public class IndexController
     public String Update(@PathVariable("id") long id, Model model)
     {
         //add product with id to the model view
-        model.addAttribute("products", productService.Read(id));
+        model.addAttribute("products", iProductService.FindById(id));
         return "/update";
     }
 
@@ -51,19 +56,19 @@ public class IndexController
     @PostMapping("/update")
     public String Update(@ModelAttribute Product product)
     {
-        productService.Update(product);
+        iProductService.Save(product);
         return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")
-    public String slet(@PathVariable("id") long id, Model model)
+    public String Delete(@PathVariable("id") long id)
     {
-
+        iProductService.DeleteByID(id);
+                /*
         //Should return the boolean value and send it to index
-
         try
         {
-            model.addAttribute("test", productService.Delete(id));
+            model.addAttribute("test", );
             //Can not get this to index.html
             model.addAttribute("status", "Element " + id + " slettet");
         }
@@ -73,6 +78,8 @@ public class IndexController
             model.addAttribute("status", "Element " + id + " kunne ikke slettes!");
             return "/index";
         }
+
+                 */
 
         return "redirect:/";
     }

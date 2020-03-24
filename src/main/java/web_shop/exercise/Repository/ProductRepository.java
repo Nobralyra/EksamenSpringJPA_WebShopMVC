@@ -1,3 +1,4 @@
+
 package web_shop.exercise.Repository;
 
 import org.springframework.stereotype.Repository;
@@ -5,9 +6,9 @@ import web_shop.exercise.Model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 @Repository
-public class ProductRepository implements ICrudRepository<Product>
+public class ProductRepository
 {
     //Collection for handling test data
     private List<Product> listOfProducts = new ArrayList<>();
@@ -76,17 +77,11 @@ public class ProductRepository implements ICrudRepository<Product>
     @Override
     public boolean Delete(long id)
     {
-        for(int i = 0; i < listOfProducts.size(); i++)
+        int i = 0;
+        while (i < listOfProducts.size())
         {
             if (listOfProducts.get(i).getId() == id)
             {
-                //Deletes the product
-                listOfProducts.remove(i);
-                return true;
-            }
-            else if (listOfProducts.get(i+1).getId() == id)
-            {
-                //Deletes the product
                 listOfProducts.remove(i);
                 return true;
             }
@@ -99,3 +94,5 @@ public class ProductRepository implements ICrudRepository<Product>
         return false;
     }
 }
+
+ */

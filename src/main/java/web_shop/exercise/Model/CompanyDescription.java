@@ -1,18 +1,29 @@
 package web_shop.exercise.Model;
 
+import javax.persistence.*;
+
+@Entity
 public class CompanyDescription
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String description;
+
+    @Lob
+    private String descriptionCompany;
+
+    //If we delete the Product object, the Recipe will remain inside the database.
+    @OneToOne
+    private Product product;
 
     public CompanyDescription()
     {
     }
 
-    public CompanyDescription(long id, String description)
+    public CompanyDescription(long id, String descriptionCompany)
     {
         this.id = id;
-        this.description = description;
+        this.descriptionCompany = descriptionCompany;
     }
 
     public long getId()
@@ -25,13 +36,23 @@ public class CompanyDescription
         this.id = id;
     }
 
-    public String getDescription()
+    public String getDescriptionCompany()
     {
-        return description;
+        return descriptionCompany;
     }
 
-    public void setDescription(String description)
+    public void setDescriptionCompany(String description)
     {
-        this.description = description;
+        this.descriptionCompany = description;
+    }
+
+    public Product getProduct()
+    {
+        return product;
+    }
+
+    public void setProduct(Product product)
+    {
+        this.product = product;
     }
 }

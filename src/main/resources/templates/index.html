@@ -23,10 +23,11 @@
             <tbody>
             <tr th:each="product : ${products}">
                 <td hidden th:text="${product.id}"></td>
-                <td th:text="${product.name}"></td>
+                <td th:text="${product.productName}"></td>
                 <td th:text="${product.price}"></td>
-                <td th:text="${product.description}"></td>
+                <td th:text="${product.productDescription}"></td>
                 <td>
+                    <a class="btn btn-primary" th:href="@{'/details/' + ${product.id}}" role="button">Flere detaljer</a>
                     <a class="btn btn-primary" th:href="@{'/update/' + ${product.id}}" role="button">Opdater</a>
                     <a class="btn btn-primary" th:href="@{'/delete/' + ${product.id}}" role="button">Slet</a>
                 </td>
@@ -34,9 +35,9 @@
             </tbody>
         </table>
 
-    <!-- Check if errorMessage is not null and not empty-->
+    <!-- Check if errorMessage is not null and not empty
     <div th:if="${status}" th:utext="${status}" class="error"></div>
-
+-->
     <a class="btn btn-primary" th:href="@{/create}" role="button">Opret produkt</a>
 
 </div>
