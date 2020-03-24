@@ -21,6 +21,7 @@ target/
 *.ipr
 # File-based project format
 *.iws
+*.properties
 
 ### NetBeans ###
 /nbproject/private/
