@@ -30,7 +30,7 @@ public class ProductService implements IProductService
     public Product FindById(Long id)
     {
         Optional<Product> productOptional = iCrudProductRepository.findById(id);
-        return productOptional.orElseThrow(IllegalStateException::new);
+        return productOptional.orElse(null);
     }
 
 
@@ -39,10 +39,15 @@ public class ProductService implements IProductService
     {
         List<Product> productList = new ArrayList<>();
 
+        /*
         for (Product product: iCrudProductRepository.findAll())
         {
             productList.add(product);
         }
+         */
+        //Instead you can do
+        iCrudProductRepository.findAll().forEach(productList::add);
+
         return productList;
     }
 

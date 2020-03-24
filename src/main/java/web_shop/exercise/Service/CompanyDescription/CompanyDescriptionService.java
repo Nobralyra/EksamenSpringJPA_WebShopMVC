@@ -20,7 +20,7 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
     public CompanyDescription FindById(Long id)
     {
         Optional<CompanyDescription> companyDescriptionOptional = iCrudCompanyDescriptionRepository.findById(id);
-        return companyDescriptionOptional.orElseThrow(IllegalStateException::new);
+        return companyDescriptionOptional.orElse(null);
     }
 
 }

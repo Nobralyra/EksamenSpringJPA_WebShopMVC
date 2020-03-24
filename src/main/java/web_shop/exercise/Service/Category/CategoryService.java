@@ -19,6 +19,6 @@ public class CategoryService implements ICrudService<Category, Long>
     public Category FindById(Long id)
     {
         Optional<Category> categoryOptional = iCrudCategoryRepository.findById(id);
-        return categoryOptional.orElseThrow(IllegalStateException::new);
+        return categoryOptional.orElse(null);
     }
 }

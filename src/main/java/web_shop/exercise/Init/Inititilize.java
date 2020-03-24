@@ -25,7 +25,9 @@ public class Inititilize implements ApplicationListener<ContextRefreshedEvent>
     private final ICrudCompanyRepository iCrudCompanyRepository;
     private final ICrudCompanyDescriptionRepository iCrudCompanyDescriptionRepository;
 
-    public Inititilize(ICrudCategoryRepository iCrudCategoryRepository, ICrudProductRepository iCrudProductRepository, ICrudCompanyRepository iCrudCompanyRepository, ICrudCompanyDescriptionRepository iCrudCompanyDescriptionRepository)
+    public Inititilize(ICrudCategoryRepository iCrudCategoryRepository, ICrudProductRepository iCrudProductRepository,
+                       ICrudCompanyRepository iCrudCompanyRepository,
+                       ICrudCompanyDescriptionRepository iCrudCompanyDescriptionRepository)
     {
         this.iCrudCategoryRepository = iCrudCategoryRepository;
         this.iCrudProductRepository = iCrudProductRepository;
@@ -47,12 +49,7 @@ public class Inititilize implements ApplicationListener<ContextRefreshedEvent>
         Optional<Category> fantasyCategoryOptional = iCrudCategoryRepository.findByCategoryName("Fantasy");
 
 
-        if(!fantasyCategoryOptional.isPresent())
-        {
-            throw new RuntimeException("Expected fantasyCategoryOptional Not Found");
-        }
-
-        Category fantasyCategory = fantasyCategoryOptional.get();
+        Category fantasyCategory = fantasyCategoryOptional.orElse(null);
 
 
         Product bookProduct = new Product();

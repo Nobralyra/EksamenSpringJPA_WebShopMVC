@@ -19,7 +19,7 @@ public class CompanyService implements ICrudService<Company, Long>
     public Company FindById(Long id)
     {
         Optional<Company> companyOptional = iCrudCompanyRepository.findById(id);
-        return companyOptional.orElseThrow(IllegalStateException::new);
+        return companyOptional.orElse(null);
     }
 
     public void Create(Company company)
