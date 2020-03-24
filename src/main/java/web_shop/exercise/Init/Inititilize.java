@@ -47,6 +47,11 @@ public class Inititilize implements ApplicationListener<ContextRefreshedEvent>
         Optional<Category> fantasyCategoryOptional = iCrudCategoryRepository.findByCategoryName("Fantasy");
 
 
+        if(!fantasyCategoryOptional.isPresent())
+        {
+            throw new RuntimeException("Expected fantasyCategoryOptional Not Found");
+        }
+
         Category fantasyCategory = fantasyCategoryOptional.get();
 
 
