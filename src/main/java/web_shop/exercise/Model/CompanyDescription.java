@@ -13,7 +13,8 @@ public class CompanyDescription
     private String descriptionCompany;
 
     //If we delete the Product object, the CompanyDescription will remain inside the database.
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     public CompanyDescription()

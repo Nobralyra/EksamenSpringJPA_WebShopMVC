@@ -28,7 +28,9 @@ public class Product
 
     //Product is the owner of CompanyDescription
     //If we delete a Product that is going to persist down and delete CompanyDescription.
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "product")
     protected CompanyDescription companyDescription;
 
     public Product()
