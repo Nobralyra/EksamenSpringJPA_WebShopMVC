@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerElement">
+    <title>Update</title>
+</head>
+<body>
+
+<form th:action="@{/companies/update}" th:object="${company}" method="post">
+
+    <div class="col-auto">
+        <div class="col-md-6">
+            <h1>Update Company</h1>
+            <input type="hidden" name="id" placeholder="Id" th:field="*{id}">
+        </div>
+
+        <div class="form-group col-md-6" >
+            <label for="CompanyName">Virksomhedens navn:</label>
+            <input type="text" name="companyName" id="CompanyName" class="form-control" placeholder="Virksomhedens navn" th:field="*{companyName}">
+        </div>
+
+        <div class="col-md-6" >
+            <button type="submit" class="btn btn-primary">Opdater</button>
+        </div>
+    </div>
+</form>
+
+<footer th:replace="fragments/footer :: footerElement"></footer>
+</body>
+</html>

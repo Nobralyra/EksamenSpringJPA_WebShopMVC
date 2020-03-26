@@ -12,7 +12,7 @@ public class CompanyDescription
     @Lob
     private String descriptionCompany;
 
-    //If we delete the Product object, the Recipe will remain inside the database.
+    //If we delete the Product object, the CompanyDescription will remain inside the database.
     @OneToOne
     private Product product;
 

@@ -21,15 +21,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="product : ${products}">
-                <td hidden th:text="${product.id}"></td>
-                <td th:text="${product.productName}"></td>
-                <td th:text="${product.price}"></td>
-                <td th:text="${product.productDescription}"></td>
+            <tr th:each="Product : ${product}">
+                <td hidden th:text="${Product.id}"></td>
+                <td th:text="${Product.productName}"></td>
+                <td th:text="${Product.price}"></td>
+                <td th:text="${Product.productDescription}"></td>
+
                 <td>
-                    <a class="btn btn-primary" th:href="@{'/details/' + ${product.id}}" role="button">Flere detaljer</a>
-                    <a class="btn btn-primary" th:href="@{'/update/' + ${product.id}}" role="button">Opdater</a>
-                    <a class="btn btn-primary" th:href="@{'/delete/' + ${product.id}}" role="button">Slet</a>
+                    <a class="btn btn-primary" th:href="@{'/products/details/' + ${Product.id}}" role="button">Flere detaljer</a>
+                    <a class="btn btn-primary" th:href="@{'/products/update/' + ${Product.id}}" role="button">Opdater</a>
+                    <a class="btn btn-primary" th:href="@{'/products/delete/' + ${Product.id}}" role="button">Slet</a>
                 </td>
             </tr>
             </tbody>
@@ -38,7 +39,7 @@
     <!-- Check if errorMessage is not null and not empty
     <div th:if="${status}" th:utext="${status}" class="error"></div>
 -->
-    <a class="btn btn-primary" th:href="@{/create}" role="button">Opret produkt</a>
+    <a class="btn btn-primary" th:href="@{/products/create}" role="button">Opret produkt</a>
 
 </div>
 <footer th:replace="fragments/footer :: footerElement"></footer>

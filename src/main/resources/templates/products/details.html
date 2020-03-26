@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerElement">
+
+    <title>Webshop</title>
+
+</head>
+<body>
+<div class="col-auto">
+
+    <h1>Details</h1>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th hidden>Id</th>
+            <th>Varenavn</th>
+            <th>Virksomhed</th>
+
+            <th>Virksomhedsbeskrivelse</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${product}">
+            <td hidden th:text="${product.id}"></td>
+            <td th:text="${product.productName}"></td>
+            <td hidden th:text="${product.company.id}"></td>
+            <td th:text="${product.company.companyName}"></td>
+
+            <td>
+                <a class="btn btn-primary" th:href="@{'/companies/update/' + ${product.company.id}}" role="button">Opdater</a>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" th:href="@{'/'}" role="button">Tilbage</a>
+    <!-- Check if errorMessage is not null and not empty
+    <div th:if="${status}" th:utext="${status}" class="error"></div>
+-->
+
+</div>
+<footer th:replace="fragments/footer :: footerElement"></footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerElement">
+    <title>Create</title>
+</head>
+<body>
+
+    <form th:action="@{/products/create}" th:object="${product}" method="post">
+        <div class="col-auto">
+
+            <div class="col-md-6">
+                <h1>Create Product</h1>
+            </div>
+
+            <div class="form-group col-md-6" >
+                <label for="Name">Navn:</label>
+                <input type="text" name="name" id="Name" class="form-control" placeholder="Navn" th:field="*{productName}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Price">Pris:</label>
+                <input type="text" name="price" id="Price" class="form-control" placeholder="Pris" th:field="*{price}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Description">Beskrivelse:</label>
+                <input type="text" name="description" id="Description" class="form-control" placeholder="Beskrivelse" th:field="*{productDescription}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="CompanyName">Virksomhedens navn:</label>
+                <select class="form-control col-md-6" id="CompanyName" th:field="*{company}">
+                    <option th:each="Company : ${company}"
+                            th:value="${Company.id}"
+                            th:text="${Company.companyName}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Opret</button>
+            </div>
+        </div>
+    </form>
+
+<footer th:replace="fragments/footer :: footerElement"></footer>
+</body>
+</html>

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+/*
 @Component
 public class Inititilize implements ApplicationListener<ContextRefreshedEvent>
 {
@@ -71,3 +71,5 @@ public class Inititilize implements ApplicationListener<ContextRefreshedEvent>
         return productList;
     }
 }
+
+ */

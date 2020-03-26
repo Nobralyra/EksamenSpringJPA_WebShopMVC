@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerElement">
+    <title>Create</title>
+</head>
+<body>
+
+    <form th:action="@{/companies/create}" th:object="${company}" method="post">
+        <div class="col-auto">
+
+            <input type=hidden th:field="*{id}">
+
+            <div class="col-md-6">
+                <h1>Create Company</h1>
+            </div>
+
+            <div class="form-group col-md-6" >
+                <label for="CompanyName">Virksomhedens navn:</label>
+                <input type="text" name="companyName" id="CompanyName" class="form-control" placeholder="Virksomhedens navn" th:field="*{companyName}">
+            </div>
+
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Opret</button>
+            </div>
+        </div>
+    </form>
+
+<footer th:replace="fragments/footer :: footerElement"></footer>
+</body>
+</html>
