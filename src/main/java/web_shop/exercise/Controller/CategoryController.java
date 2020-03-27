@@ -2,6 +2,7 @@ package web_shop.exercise.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,8 @@ import web_shop.exercise.Model.Category;
 import web_shop.exercise.Model.Product;
 import web_shop.exercise.Service.ICrudService;
 
-import java.util.List;
+import javax.validation.Valid;
+
 
 @Controller
 public class CategoryController
@@ -28,6 +30,7 @@ public class CategoryController
     public String CategoryPage(Model model)
     {
         model.addAttribute("category", iCategoryCrudService.FindAll());
+
         return ("/categories/index");
     }
 
@@ -39,9 +42,18 @@ public class CategoryController
     }
 
     @PostMapping("/categories/create")
-    public String CreateCompany(@ModelAttribute Category category, Model model)
+    public String CreateCompany(@ModelAttribute @Valid Category category, BindingResult resultCategory, Model model)
     {
-        iCategoryCrudService.Save(category);
+        if(!resultCategory.hasErrors())
+        {
+            iCategoryCrudService.Save(category);
+        }
+        else
+        {
+            model.addAttribute("resultCategory", resultCategory);
+            return "/categories/create";
+        }
+
         return "redirect:/categories";
     }
 
@@ -66,10 +78,25 @@ public class CategoryController
 
     //update product
     @PostMapping("/categories/update")
-    public String Update(@ModelAttribute Category category)
+    public String Update(@ModelAttribute @Valid Category category, BindingResult resultCategory, Model model)
     {
-        iCategoryCrudService.Save(category);
-        return "redirect:/";
+        if(!resultCategory.hasErrors())
+        {
+            iCategoryCrudService.Save(category);
+        }
+        else
+        {
+            model.addAttribute("resultCategory", resultCategory);
+            return "/categories/update";
+        }
+
+        return "redirect:/categories";
+    }
+
+    @GetMapping("/categories/delete/{id}")
+    public String delete(@PathVariable("id") long id){
+        iCategoryCrudService.DeleteByID(id);
+        return "redirect:/categories";
     }
 
 }

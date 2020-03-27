@@ -2,6 +2,7 @@ package web_shop.exercise.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +11,9 @@ import web_shop.exercise.Model.Category;
 import web_shop.exercise.Model.Company;
 import web_shop.exercise.Model.CompanyDescription;
 import web_shop.exercise.Model.Product;
-import web_shop.exercise.Service.Category.CategoryService;
 import web_shop.exercise.Service.ICrudService;
+
+import javax.validation.Valid;
 
 @Controller
 public class IndexController
@@ -35,22 +37,48 @@ public class IndexController
     {
         //add all products to view model from ICrudService
         model.addAttribute("product", iProductCrudService.FindAll());
+
+        if(iCompanyCrudService.FindAll().size() == 0)
+        {
+            return ("/companies/index");
+        }
+
         return ("/products/index");
     }
 
     @GetMapping("/products/create")
-    public String Create(Product product, Model model)
+    public String Create(Product product, CompanyDescription companyDescription, Model model)
     {
         model.addAttribute("category", iCategoryCrudService.FindAll());
         model.addAttribute("company", iCompanyCrudService.FindAll());
         model.addAttribute("product", product);
+
         return "/products/create";
     }
 
     @PostMapping("/products/create")
-    public String CreateProduct(@ModelAttribute Product product)
+    public String CreateProduct(@ModelAttribute @Valid Product product, BindingResult resultProduct,
+                                @ModelAttribute @Valid CompanyDescription companyDescription,
+                                BindingResult resultCompanyDescription,
+                                Model model)
     {
-        iProductCrudService.Save(product);
+        if(!resultProduct.hasErrors())
+        {
+            iProductCrudService.Save(product);
+        }
+        else
+        {
+            model.addAttribute("resultProduct", resultProduct);
+            model.addAttribute("resultCompanyDescription", resultCompanyDescription);
+
+
+            model.addAttribute("category", iCategoryCrudService.FindAll());
+            model.addAttribute("company", iCompanyCrudService.FindAll());
+
+            return "/products/create";
+        }
+
+
         return "redirect:/";
     }
 
@@ -60,6 +88,7 @@ public class IndexController
         //add all products to view model from ICrudService
         model.addAttribute("product", iProductCrudService.FindById(id));
         model.addAttribute("category", iCategoryCrudService.FindAll());
+
         return ("/products/details");
     }
 
@@ -70,16 +99,27 @@ public class IndexController
         //add product with id to the model view
         model.addAttribute("product", iProductCrudService.FindById(id));
         model.addAttribute("company", iCompanyCrudService.FindById(id));
-        model.addAttribute("companyDescription", iCompanyDescriptionCrudService.FindById(id));
         model.addAttribute("category", iCategoryCrudService.FindAll());
+
         return "/products/update";
     }
 
     //update product
     @PostMapping("/products/update")
-    public String Update(@ModelAttribute Product product)
+    public String Update(@ModelAttribute @Valid Product product, BindingResult resultProduct, Model model)
     {
-        iProductCrudService.Save(product);
+        if(!resultProduct.hasErrors())
+        {
+            iProductCrudService.Save(product);
+        }
+        else
+        {
+            model.addAttribute("resultProduct", resultProduct);
+
+            model.addAttribute("category", iCategoryCrudService.FindAll());
+
+            return "/products/update";
+        }
 
         return "redirect:/";
     }
@@ -88,25 +128,7 @@ public class IndexController
     public String Delete(@PathVariable("id") long id)
     {
         iProductCrudService.DeleteByID(id);
-                /*
-        //Should return the boolean value and send it to index
-        try
-        {
-            model.addAttribute("test", );
-            //Can not get this to index.html
-            model.addAttribute("status", "Element " + id + " slettet");
-        }
-        catch (Exception e)
-        {
-            //Can not use redirect because I then loose the message
-            model.addAttribute("status", "Element " + id + " kunne ikke slettes!");
-            return "/index";
-        }
-
-                 */
 
         return "redirect:/";
     }
-
-
 }

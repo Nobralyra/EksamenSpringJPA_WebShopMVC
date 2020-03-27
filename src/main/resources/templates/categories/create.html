@@ -4,19 +4,21 @@
     <title>Create</title>
 </head>
 <body>
-
+<header th:replace="fragments/top_menu :: top_menuElement"></header>
     <form th:action="@{/categories/create}" th:object="${category}" method="post">
         <div class="col-auto">
 
-            <input type=hidden th:field="*{categoryId}">
-
             <div class="col-md-6">
                 <h1>Create Category</h1>
+                <input type=hidden th:field="*{categoryId}">
             </div>
+
+
 
             <div class="form-group col-md-6" >
                 <label for="CategoryName">Kategori:</label>
                 <input type="text" name="categoryName" id="CategoryName" class="form-control" placeholder="Kategori" th:field="*{categoryName}">
+                <span th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"></span>
             </div>
 
             <div class="form-group col-md-6">

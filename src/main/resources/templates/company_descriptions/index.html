@@ -6,6 +6,7 @@
 
 </head>
 <body>
+<header th:replace="fragments/top_menu :: top_menuElement"></header>
     <div class="col-auto">
 
         <h1>Virksomhedsbeskrivelse</h1>
@@ -30,11 +31,6 @@
             </tr>
             </tbody>
         </table>
-
-    <!-- Check if errorMessage is not null and not empty
-    <div th:if="${status}" th:utext="${status}" class="error"></div>
--->
-    <a class="btn btn-primary" th:href="@{/company_descriptions/create}" role="button">Opret virksomhedsbeskrivelse</a>
 
 </div>
 <footer th:replace="fragments/footer :: footerElement"></footer>

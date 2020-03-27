@@ -4,26 +4,28 @@
     <title>Update</title>
 </head>
 <body>
+<header th:replace="fragments/top_menu :: top_menuElement"></header>
+    <form th:action="@{/company_descriptions/update}" th:object="${companyDescription}" method="post">
 
-<form th:action="@{/company_descriptions/update}" th:object="${companyDescription}" method="post">
+        <div class="col-auto">
+            <div class="col-md-6">
+                <h1>Update Company Description</h1>
+                <input type="hidden" th:field="*{product.productId}">
+                <input type="hidden" th:field="*{companyDescriptionId}">
+            </div>
 
-    <div class="col-auto">
-        <div class="col-md-6">
-            <h1>Update Company Description</h1>
-            <input type="hidden" name="id" placeholder="Id" th:field="*{product.productId}">
-            <input type="hidden" name="id" placeholder="Id" th:field="*{companyDescriptionId}">
+            <div class="form-group col-md-6" >
+                <label for="CompanyDescription">Virksomhedsbeskrivelse:</label>
+                <input type="text" name="companyDescription" id="CompanyDescription" class="form-control"
+                       placeholder="Virksomhedsbeskrivelse" th:field="*{descriptionCompany}">
+                <span th:if="${#fields.hasErrors('descriptionCompany')}" th:errors="*{descriptionCompany}"></span>
+            </div>
+
+            <div class="col-md-6" >
+                <button type="submit" class="btn btn-primary">Opdater</button>
+            </div>
         </div>
-
-        <div class="form-group col-md-6" >
-            <label for="CompanyDescription">Virksomhedsbeskrivelse:</label>
-            <input type="text" name="companyDescription" id="CompanyDescription" class="form-control" placeholder="Virksomhedsbeskrivelse" th:field="*{descriptionCompany}">
-        </div>
-
-        <div class="col-md-6" >
-            <button type="submit" class="btn btn-primary">Opdater</button>
-        </div>
-    </div>
-</form>
+    </form>
 
 <footer th:replace="fragments/footer :: footerElement"></footer>
 </body>

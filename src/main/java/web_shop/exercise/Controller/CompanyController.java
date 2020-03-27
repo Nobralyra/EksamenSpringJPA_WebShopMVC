@@ -2,12 +2,15 @@ package web_shop.exercise.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web_shop.exercise.Model.Company;
 import web_shop.exercise.Service.ICrudService;
+
+import javax.validation.Valid;
 
 @Controller
 public class CompanyController
@@ -34,9 +37,18 @@ public class CompanyController
     }
 
     @PostMapping("/companies/create")
-    public String CreateCompany(@ModelAttribute Company company, Model model)
+    public String CreateCompany(@ModelAttribute @Valid Company company, BindingResult resultCompany, Model model)
     {
-        iCrudService.Save(company);
+        if(!resultCompany.hasErrors())
+        {
+            iCrudService.Save(company);
+        }
+        else
+        {
+            model.addAttribute("resultCompany", resultCompany);
+            return "/companies/create";
+        }
+
         return "redirect:/companies";
     }
 
@@ -51,10 +63,18 @@ public class CompanyController
 
     //update product
     @PostMapping("/companies/update")
-    public String Update(@ModelAttribute Company company)
+    public String Update(@ModelAttribute @Valid Company company, BindingResult resultCompany, Model model)
     {
-        iCrudService.Save(company);
-        return "redirect:/";
+        if(!resultCompany.hasErrors())
+        {
+            iCrudService.Save(company);
+        }
+        else
+        {
+            model.addAttribute("resultCompany", resultCompany);
+            return "/companies/update";
+        }
+        return "redirect:/companies";
     }
 
     @GetMapping("/companies/delete/{id}")

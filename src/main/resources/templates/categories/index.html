@@ -5,6 +5,7 @@
     <title>Webshop</title>
 
 </head>
+<header th:replace="fragments/top_menu :: top_menuElement"></header>
 <body>
     <div class="col-auto">
 
@@ -25,6 +26,7 @@
                 <td>
                     <a class="btn btn-primary" th:href="@{'/categories/details/' + ${Category.categoryId}}" role="button">Flere detaljer</a>
                     <a class="btn btn-primary" th:href="@{'/categories/update/' + ${Category.categoryId}}" role="button">Opdater</a>
+                    <a class="btn btn-primary" th:href="@{'/categories/delete/' + ${Category.categoryId}}" role="button">Slet</a>
                 </td>
 
             </tr>

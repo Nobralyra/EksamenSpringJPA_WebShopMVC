@@ -9,11 +9,10 @@ import javax.validation.constraints.NotBlank;
 public class CompanyDescription
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long companyDescriptionId;
 
-    @Lob
     @NotBlank(message = "Please insert description from company")
-    @Length(max=1000)
     private String descriptionCompany;
 
     //If we delete the Product object, the CompanyDescription will remain inside the database.
