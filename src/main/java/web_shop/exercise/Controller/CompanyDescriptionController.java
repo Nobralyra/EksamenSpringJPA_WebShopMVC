@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web_shop.exercise.Model.CompanyDescription;
+import web_shop.exercise.Model.Product;
 import web_shop.exercise.Service.ICrudService;
 
 @Controller
@@ -26,20 +27,6 @@ public class CompanyDescriptionController
         return ("/company_descriptions/index");
     }
 
-    @GetMapping("/company_descriptions/create")
-    public String Create(CompanyDescription companyDescription, Model model)
-    {
-        model.addAttribute("companyDescription", companyDescription);
-        return "/company_descriptions/create";
-    }
-
-    @PostMapping("/company_descriptions/create")
-    public String CreateCompanyDescription(@ModelAttribute CompanyDescription companyDescription, Model model)
-    {
-        iCrudService.Save(companyDescription);
-        return "redirect:/company_descriptions";
-    }
-
     //use PathVariable to fetch id from list on web page
     @GetMapping("/company_descriptions/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
@@ -54,7 +41,7 @@ public class CompanyDescriptionController
     public String Update(@ModelAttribute CompanyDescription companyDescription)
     {
         iCrudService.Save(companyDescription);
-        return "redirect:/company_descriptions";
+        return "redirect:/";
     }
 
     @GetMapping("/company_descriptions/delete/{id}")

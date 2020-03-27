@@ -6,35 +6,36 @@ import javax.persistence.*;
 public class CompanyDescription
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long companyDescriptionId;
 
     @Lob
     private String descriptionCompany;
 
     //If we delete the Product object, the CompanyDescription will remain inside the database.
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
+    @MapsId
     private Product product;
 
     public CompanyDescription()
     {
     }
 
-    public CompanyDescription(long id, String descriptionCompany)
+    public CompanyDescription(long companyDescriptionId, String descriptionCompany, Product product)
     {
-        this.id = id;
+        this.companyDescriptionId = companyDescriptionId;
         this.descriptionCompany = descriptionCompany;
+        this.product = product;
+
     }
 
-    public long getId()
+    public long getCompanyDescriptionId()
     {
-        return id;
+        return companyDescriptionId;
     }
 
-    public void setId(long id)
+    public void setCompanyDescriptionId(long companyDescriptionId)
     {
-        this.id = id;
+        this.companyDescriptionId = companyDescriptionId;
     }
 
     public String getDescriptionCompany()

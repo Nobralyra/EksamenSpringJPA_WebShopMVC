@@ -62,9 +62,9 @@ public class IndexController
     public String Update(@PathVariable("id") long id, Model model)
     {
         //add product with id to the model view
-        model.addAttribute("companyDescription", iCompanyDescriptionCrudService.FindAll());
-        model.addAttribute("company", iCompanyCrudService.FindAll());
         model.addAttribute("product", iProductCrudService.FindById(id));
+        model.addAttribute("company", iCompanyCrudService.FindById(id));
+        model.addAttribute("companyDescription", iCompanyDescriptionCrudService.FindById(id));
         return "/products/update";
     }
 
@@ -73,6 +73,7 @@ public class IndexController
     public String Update(@ModelAttribute Product product)
     {
         iProductCrudService.Save(product);
+
         return "redirect:/";
     }
 

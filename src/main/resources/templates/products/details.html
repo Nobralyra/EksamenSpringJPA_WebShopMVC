@@ -16,22 +16,28 @@
             <th hidden>Id</th>
             <th>Varenavn</th>
             <th>Virksomhed</th>
-
-            <th>Virksomhedsbeskrivelse</th>
             <th></th>
+            <th>Virksomhedsbeskrivelse</th>
+
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="product : ${product}">
-            <td hidden th:text="${product.id}"></td>
+        <tr th:each="Product : ${product}">
+            <td hidden th:text="${product.productId}"></td>
             <td th:text="${product.productName}"></td>
-            <td hidden th:text="${product.company.id}"></td>
+            <td hidden th:text="${product.company.companyId}"></td>
             <td th:text="${product.company.companyName}"></td>
 
             <td>
-                <a class="btn btn-primary" th:href="@{'/companies/update/' + ${product.company.id}}" role="button">Opdater</a>
+                <a class="btn btn-primary" th:href="@{'/companies/update/' + ${product.company.companyId}}" role="button">Opdater</a>
+            </td>
 
+            <td hidden th:text="${product.companyDescription.companyDescriptionId}"></td>
+            <td th:text="${product.companyDescription.descriptionCompany}"></td>
+
+            <td>
+                <a class="btn btn-primary" th:href="@{'/company_descriptions/update/' + ${product.companyDescription.companyDescriptionId}}" role="button">Opdater</a>
             </td>
 
         </tr>

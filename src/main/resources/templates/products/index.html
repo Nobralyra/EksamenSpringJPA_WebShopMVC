@@ -22,15 +22,15 @@
             </thead>
             <tbody>
             <tr th:each="Product : ${product}">
-                <td hidden th:text="${Product.id}"></td>
+                <td hidden th:text="${Product.productId}"></td>
                 <td th:text="${Product.productName}"></td>
                 <td th:text="${Product.price}"></td>
                 <td th:text="${Product.productDescription}"></td>
 
                 <td>
-                    <a class="btn btn-primary" th:href="@{'/products/details/' + ${Product.id}}" role="button">Flere detaljer</a>
-                    <a class="btn btn-primary" th:href="@{'/products/update/' + ${Product.id}}" role="button">Opdater</a>
-                    <a class="btn btn-primary" th:href="@{'/products/delete/' + ${Product.id}}" role="button">Slet</a>
+                    <a class="btn btn-primary" th:href="@{'/products/details/' + ${Product.productId}}" role="button">Flere detaljer</a>
+                    <a class="btn btn-primary" th:href="@{'/products/update/' + ${Product.productId}}" role="button">Opdater</a>
+                    <a class="btn btn-primary" th:href="@{'/products/delete/' + ${Product.productId}}" role="button">Slet</a>
                 </td>
             </tr>
             </tbody>

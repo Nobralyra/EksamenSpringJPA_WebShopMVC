@@ -31,10 +31,15 @@
                 <label for="CompanyName">Virksomhedens navn:</label>
                 <select class="form-control col-md-6" id="CompanyName" th:field="*{company}">
                     <option th:each="Company : ${company}"
-                            th:value="${Company.id}"
+                            th:value="${Company.companyId}"
                             th:text="${Company.companyName}">
                     </option>
                 </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="CompanyDescription">Virksomhedsbeskrivelse:</label>
+                <input type="text" name="companyDescription" id="CompanyDescription" placeholder="Virksomhedsbeskrivelse" th:field="*{companyDescription.descriptionCompany}">
             </div>
 
             <div class="form-group col-md-6">

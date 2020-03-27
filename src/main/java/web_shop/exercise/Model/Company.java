@@ -8,7 +8,7 @@ public class Company
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long companyId;
 
     private String companyName;
 
@@ -20,25 +20,21 @@ public class Company
     {
     }
 
-    public Company(String companyName)
+    public Company(long companyId, String companyName, List<Product> products)
     {
+        this.companyId = companyId;
         this.companyName = companyName;
+        this.products = products;
     }
 
-    public Company(long id, String companyName)
+    public long getCompanyId()
     {
-        this.id = id;
-        this.companyName = companyName;
+        return companyId;
     }
 
-    public long getId()
+    public void setCompanyId(long companyId)
     {
-        return id;
-    }
-
-    public void setId(long id)
-    {
-        this.id = id;
+        this.companyId = companyId;
     }
 
     public String getCompanyName()

@@ -2,7 +2,6 @@ package web_shop.exercise.Model;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -10,7 +9,7 @@ public class Product
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long productId;
     private String productName;
     private double price;
 
@@ -36,22 +35,25 @@ public class Product
     public Product()
     {}
 
-    public Product(long id, String productName, double price, String productDescription)
+    public Product(long productId, String productName, double price, String productDescription, Set<Category> categories, Company company, CompanyDescription companyDescription)
     {
-        this.id = id;
+        this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.productDescription = productDescription;
+        this.categories = categories;
+        this.company = company;
+        this.companyDescription = companyDescription;
     }
 
-    public long getId()
+    public long getProductId()
     {
-        return id;
+        return productId;
     }
 
-    public void setId(long id)
+    public void setProductId(long productId)
     {
-        this.id = id;
+        this.productId = productId;
     }
 
     public String getProductName()
@@ -112,5 +114,7 @@ public class Product
     public void setCompanyDescription(CompanyDescription companyDescription)
     {
         this.companyDescription = companyDescription;
+        this.companyDescription.setProduct(this);
     }
+
 }

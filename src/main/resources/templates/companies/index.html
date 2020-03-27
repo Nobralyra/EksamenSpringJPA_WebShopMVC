@@ -21,11 +21,11 @@
             </thead>
             <tbody>
             <tr th:each="Company : ${company}">
-                <td hidden th:text="${Company.id}"></td>
+                <td hidden th:text="${Company.companyId}"></td>
                 <td th:text="${Company.companyName}"></td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{'/companies/update/' + ${Company.id}}" role="button">Opdater</a>
-                    <a class="btn btn-primary" th:href="@{'/companies/delete/' + ${Company.id}}" role="button">Slet</a>
+                    <a class="btn btn-primary" th:href="@{'/companies/update/' + ${Company.companyId}}" role="button">Opdater</a>
+                    <a class="btn btn-primary" th:href="@{'/companies/delete/' + ${Company.companyId}}" role="button">Slet</a>
                 </td>
                 <!--
                 <td id="tiid" th:each="product : ${companyDetail.product}">

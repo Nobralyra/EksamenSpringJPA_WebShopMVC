@@ -54,7 +54,7 @@ public class CompanyController
     public String Update(@ModelAttribute Company company)
     {
         iCrudService.Save(company);
-        return "redirect:/companies";
+        return "redirect:/";
     }
 
     @GetMapping("/companies/delete/{id}")

@@ -1,6 +1,7 @@
 package web_shop.exercise.Service.Product;
 
 import org.springframework.stereotype.Service;
+import web_shop.exercise.Model.CompanyDescription;
 import web_shop.exercise.Model.Product;
 
 import web_shop.exercise.Repository.ICrudProductRepository;
@@ -59,6 +60,5 @@ public class ProductService implements ICrudService<Product, Long>
     {
         iCrudProductRepository.deleteById(id);
     }
-
 
 }

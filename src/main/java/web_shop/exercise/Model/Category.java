@@ -8,7 +8,7 @@ public class Category
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long categoryId;
     private String categoryName;
 
     //On the joined table
@@ -19,20 +19,20 @@ public class Category
     {
     }
 
-    public Category(long id, String categoryName)
+    public Category(long categoryId, String categoryName)
     {
-        this.id = id;
+        this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
 
-    public long getId()
+    public long getCategoryId()
     {
-        return id;
+        return categoryId;
     }
 
-    public void setId(long id)
+    public void setCategoryId(long id)
     {
-        this.id = id;
+        this.categoryId = id;
     }
 
     public String getCategoryName()
