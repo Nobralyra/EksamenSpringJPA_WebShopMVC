@@ -12,6 +12,8 @@
             <h1>Update Product</h1>
             <input type="hidden" name="id" placeholder="Id" th:field="*{productId}">
         </div>
+        <input type="hidden" name="id" placeholder="Id" th:field="*{company.companyId}">
+        </div>
 
         <div class="form-group col-md-6" >
             <label for="Name">Navn:</label>
@@ -27,6 +29,16 @@
             <label for="Description">Beskrivelse:</label>
             <input type="text" name="description" id="Description" class="form-control" placeholder="Beskrivelse" th:field="*{productDescription}">
         </div>
+
+    <div class="form-group col-md-6">
+        <label for="CategoryName">Kategori:</label>
+        <select class="form-control col-md-6" id="CategoryName" th:field="*{categories}" multiple>
+            <option th:each="Category : ${category}"
+                    th:value="${Category.categoryId}"
+                    th:text="${Category.categoryName}">
+            </option>
+        </select>
+    </div>
 
         <div class="col-md-6" >
             <button type="submit" class="btn btn-primary">Opdater</button>

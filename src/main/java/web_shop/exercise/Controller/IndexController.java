@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import web_shop.exercise.Model.Category;
 import web_shop.exercise.Model.Company;
 import web_shop.exercise.Model.CompanyDescription;
 import web_shop.exercise.Model.Product;
+import web_shop.exercise.Service.Category.CategoryService;
 import web_shop.exercise.Service.ICrudService;
 
 @Controller
@@ -17,13 +19,15 @@ public class IndexController
     private final ICrudService<Product, Long> iProductCrudService;
     private final ICrudService<Company, Long> iCompanyCrudService;
     private final ICrudService<CompanyDescription, Long> iCompanyDescriptionCrudService;
+    private final ICrudService<Category, Long> iCategoryCrudService;
     
     
-    public IndexController(ICrudService<Product, Long> iProductCrudService, ICrudService<Company, Long> iCompanyCrudService, ICrudService<CompanyDescription, Long> iCompanyDescriptionCrudService)
+    public IndexController(ICrudService<Product, Long> iProductCrudService, ICrudService<Company, Long> iCompanyCrudService, ICrudService<CompanyDescription, Long> iCompanyDescriptionCrudService, ICrudService<Category, Long> iCategoryCrudService)
     {
         this.iProductCrudService = iProductCrudService;
         this.iCompanyCrudService = iCompanyCrudService;
         this.iCompanyDescriptionCrudService = iCompanyDescriptionCrudService;
+        this.iCategoryCrudService = iCategoryCrudService;
     }
 
     @GetMapping({"", "/"})
@@ -37,6 +41,7 @@ public class IndexController
     @GetMapping("/products/create")
     public String Create(Product product, Model model)
     {
+        model.addAttribute("category", iCategoryCrudService.FindAll());
         model.addAttribute("company", iCompanyCrudService.FindAll());
         model.addAttribute("product", product);
         return "/products/create";
@@ -54,6 +59,7 @@ public class IndexController
     {
         //add all products to view model from ICrudService
         model.addAttribute("product", iProductCrudService.FindById(id));
+        model.addAttribute("category", iCategoryCrudService.FindAll());
         return ("/products/details");
     }
 
@@ -65,6 +71,7 @@ public class IndexController
         model.addAttribute("product", iProductCrudService.FindById(id));
         model.addAttribute("company", iCompanyCrudService.FindById(id));
         model.addAttribute("companyDescription", iCompanyDescriptionCrudService.FindById(id));
+        model.addAttribute("category", iCategoryCrudService.FindAll());
         return "/products/update";
     }
 

@@ -1,8 +1,13 @@
 package web_shop.exercise.Model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product
@@ -10,16 +15,27 @@ public class Product
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long productId;
+
+    @NotBlank(message = "Please insert name of product")
     private String productName;
+
+    @NotNull
+    @Min(0)
     private double price;
 
     @Lob
+    @NotBlank(message = "Please insert description of product")
+    @Length(max=1000)
     private String productDescription;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    protected Set<Category> categories = new HashSet<>();
+    protected List<Category> categories = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER, optional=false)
     @JoinColumn(name="company_id", nullable = false)
@@ -35,7 +51,7 @@ public class Product
     public Product()
     {}
 
-    public Product(long productId, String productName, double price, String productDescription, Set<Category> categories, Company company, CompanyDescription companyDescription)
+    public Product(long productId, String productName, double price, String productDescription, List<Category> categories, Company company, CompanyDescription companyDescription)
     {
         this.productId = productId;
         this.productName = productName;
@@ -86,12 +102,12 @@ public class Product
         this.productDescription = description;
     }
 
-    public Set<Category> getCategories()
+    public List<Category> getCategories()
     {
         return categories;
     }
 
-    public void setCategories(Set<Category> categories)
+    public void setCategories(List<Category> categories)
     {
         this.categories = categories;
     }
@@ -117,4 +133,9 @@ public class Product
         this.companyDescription.setProduct(this);
     }
 
+    @Override
+    public String toString()
+    {
+        return productName;
+    }
 }

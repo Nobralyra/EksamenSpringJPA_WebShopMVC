@@ -1,6 +1,9 @@
 package web_shop.exercise.Model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class CompanyDescription
@@ -9,6 +12,8 @@ public class CompanyDescription
     private long companyDescriptionId;
 
     @Lob
+    @NotBlank(message = "Please insert description from company")
+    @Length(max=1000)
     private String descriptionCompany;
 
     //If we delete the Product object, the CompanyDescription will remain inside the database.

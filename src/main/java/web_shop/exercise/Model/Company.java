@@ -1,6 +1,8 @@
 package web_shop.exercise.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -10,6 +12,8 @@ public class Company
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long companyId;
 
+    @NotBlank(message = "Please insert name of company")
+    @Size(min = 1, max = 35)
     private String companyName;
 
     //mappedby is the tablename

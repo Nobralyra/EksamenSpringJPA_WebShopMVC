@@ -8,33 +8,34 @@
 <body>
     <div class="col-auto">
 
-        <h1>Virksomheder</h1>
+        <h1>Kategori</h1>
 
         <table class="table table-bordered">
             <thead class="thead-light">
             <tr>
                 <th hidden>Id</th>
-                <th>Virksomhedsnavn</th>
-                <th>Produkter</th>
+                <th>Kategori</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="Company : ${company}">
-                <td hidden th:text="${Company.companyId}"></td>
-                <td th:text="${Company.companyName}"></td>
+            <tr th:each="Category : ${category}">
+                <td hidden th:text="${Category.categoryId}"></td>
+                <td th:text="${Category.categoryName}"></td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{'/companies/update/' + ${Company.companyId}}" role="button">Opdater</a>
-                    <a class="btn btn-primary" th:href="@{'/companies/delete/' + ${Company.companyId}}" role="button">Slet</a>
+                    <a class="btn btn-primary" th:href="@{'/categories/details/' + ${Category.categoryId}}" role="button">Flere detaljer</a>
+                    <a class="btn btn-primary" th:href="@{'/categories/update/' + ${Category.categoryId}}" role="button">Opdater</a>
                 </td>
+
             </tr>
             </tbody>
         </table>
 
+
     <!-- Check if errorMessage is not null and not empty
     <div th:if="${status}" th:utext="${status}" class="error"></div>
 -->
-    <a class="btn btn-primary" th:href="@{/companies/create}" role="button">Opret virksomhed</a>
+    <a class="btn btn-primary" th:href="@{/categories/create}" role="button">Opret kategori</a>
 
 </div>
 <footer th:replace="fragments/footer :: footerElement"></footer>

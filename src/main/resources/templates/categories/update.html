@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerElement">
+    <title>Update</title>
+</head>
+<body>
+
+<form th:action="@{/categories/update}" th:object="${category}" method="post">
+
+    <div class="col-auto">
+        <div class="col-md-6">
+            <h1>Update Category</h1>
+            <input type="hidden" name="id" placeholder="Id" th:field="*{categoryId}">
+        </div>
+
+        <div class="form-group col-md-6" >
+            <label for="CategoryName">Kategori:</label>
+            <input type="text" name="categoryName" id="CategoryName" class="form-control" placeholder="Kategori" th:field="*{categoryName}">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="ProductName">Kategori:</label>
+            <select class="form-control col-md-6" id="ProductName" th:field="*{products}" multiple>
+                <option th:each="Products : ${product}"
+                        th:value="${Products.productId}"
+                        th:text="${Products.productName}">
+                </option>
+            </select>
+        </div>
+
+        <div class="col-md-6" >
+            <button type="submit" class="btn btn-primary">Opdater</button>
+        </div>
+    </div>
+</form>
+
+<footer th:replace="fragments/footer :: footerElement"></footer>
+</body>
+</html>

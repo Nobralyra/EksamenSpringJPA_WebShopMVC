@@ -28,6 +28,17 @@
             </div>
 
             <div class="form-group col-md-6">
+                <label for="CategoryName">Kategori:</label>
+                <select class="form-control col-md-6" id="CategoryName" th:field="*{categories}" multiple>
+                    <option th:each="Category : ${category}"
+                            th:value="${Category.categoryId}"
+                            th:text="${Category.categoryName}">
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="form-group col-md-6">
                 <label for="CompanyName">Virksomhedens navn:</label>
                 <select class="form-control col-md-6" id="CompanyName" th:field="*{company}">
                     <option th:each="Company : ${company}"
@@ -39,7 +50,8 @@
 
             <div class="form-group col-md-6">
                 <label for="CompanyDescription">Virksomhedsbeskrivelse:</label>
-                <input type="text" name="companyDescription" id="CompanyDescription" placeholder="Virksomhedsbeskrivelse" th:field="*{companyDescription.descriptionCompany}">
+                <input type="text" name="companyDescription" id="CompanyDescription"
+                       placeholder="Virksomhedsbeskrivelse" th:field="*{companyDescription.descriptionCompany}">
             </div>
 
             <div class="form-group col-md-6">

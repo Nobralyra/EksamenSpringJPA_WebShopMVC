@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headerElement">
+
+    <title>Webshop</title>
+
+</head>
+<body>
+<div class="col-auto">
+
+    <h1>Details</h1>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th>Kategori</th>
+            <th>Produkt</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="category" th:each="Categories : ${category}">
+            <td hidden th:text="${category.categoryId}"></td>
+            <td th:text="${category.categoryName}"></td>
+
+            <td th:text="${category.products}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{'/'}" role="button">Gå til produkter</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" th:href="@{'/categories'}" role="button">Tilbage</a>
+
+</div>
+<footer th:replace="fragments/footer :: footerElement"></footer>
+</body>
+</html>

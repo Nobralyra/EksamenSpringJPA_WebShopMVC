@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface ICrudCompanyRepository extends CrudRepository<Company, Long>
 {
-    Optional<Company> findByCompanyName(String companyName);
+
 }
