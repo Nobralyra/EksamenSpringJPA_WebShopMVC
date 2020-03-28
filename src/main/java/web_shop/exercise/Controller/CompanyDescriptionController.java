@@ -51,7 +51,7 @@ public class CompanyDescriptionController
         {
             model.addAttribute("resultCompanyDescription", resultCompanyDescription);
 
-            return "/products/update";
+            return "/company_descriptions/update";
         }
 
         iCrudService.Save(companyDescription);

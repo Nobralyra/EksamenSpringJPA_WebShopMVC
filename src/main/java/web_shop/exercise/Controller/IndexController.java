@@ -62,7 +62,7 @@ public class IndexController
                                 BindingResult resultCompanyDescription,
                                 Model model)
     {
-        if(!resultProduct.hasErrors())
+        if(!resultProduct.hasErrors() && !resultCompanyDescription.hasErrors())
         {
             iProductCrudService.Save(product);
         }
@@ -70,8 +70,8 @@ public class IndexController
         {
             model.addAttribute("resultProduct", resultProduct);
             model.addAttribute("resultCompanyDescription", resultCompanyDescription);
-
-
+            model.addAttribute("product", product);
+            model.addAttribute("companyDescription", companyDescription);
             model.addAttribute("category", iCategoryCrudService.FindAll());
             model.addAttribute("company", iCompanyCrudService.FindAll());
 

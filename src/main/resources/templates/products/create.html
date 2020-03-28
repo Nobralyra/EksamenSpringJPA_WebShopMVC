@@ -56,7 +56,7 @@
                 <div class="form-group col-md-6">
                     <label for="CompanyDescription">Virksomhedsbeskrivelse:</label>
                     <textarea name="companyDescription" id="CompanyDescription" class="form-control"
-                              placeholder="Virksomhedsbeskrivelse" th:field="*{companyDescription.descriptionCompany}" required></textarea>
+                              placeholder="Virksomhedsbeskrivelse" th:field="*{companyDescription.descriptionCompany}"></textarea>
                     <span th:if="${#fields.hasErrors('companyDescription.descriptionCompany')}" th:errors="*{companyDescription.descriptionCompany}"></span>
 
                 </div>
