@@ -6,17 +6,18 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+
 public class CompanyDescription
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long companyDescriptionId;
 
     @NotBlank(message = "Please insert description from company")
     private String descriptionCompany;
 
     //If we delete the Product object, the CompanyDescription will remain inside the database.
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade =  CascadeType.REMOVE)
+    @JoinColumn(name = "product_id")
     @MapsId
     private Product product;
 

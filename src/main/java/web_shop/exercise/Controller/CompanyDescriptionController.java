@@ -54,8 +54,6 @@ public class CompanyDescriptionController
             return "/company_descriptions/update";
         }
 
-        iCrudService.Save(companyDescription);
-
         return "redirect:/";
     }
 

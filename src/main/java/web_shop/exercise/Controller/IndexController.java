@@ -57,12 +57,12 @@ public class IndexController
     }
 
     @PostMapping("/products/create")
-    public String CreateProduct(@ModelAttribute @Valid Product product, BindingResult resultProduct,
-                                @ModelAttribute @Valid CompanyDescription companyDescription,
+    public String CreateProduct(@Valid @ModelAttribute ("product") Product product, BindingResult resultProduct,
+                                @Valid @ModelAttribute ("companyDescription") CompanyDescription companyDescription,
                                 BindingResult resultCompanyDescription,
                                 Model model)
     {
-        if(!resultProduct.hasErrors() && !resultCompanyDescription.hasErrors())
+        if(!resultProduct.hasErrors())
         {
             iProductCrudService.Save(product);
         }
