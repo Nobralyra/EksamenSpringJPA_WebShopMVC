@@ -29,16 +29,26 @@ public class CompanyDescriptionController
         return ("/company_descriptions/index");
     }
 
-    //use PathVariable to fetch id from list on web page
+    /**
+     * use PathVariable to fetch id from list on web page
+     * add product with id to the model view
+     *
+     * Of some reason I can update the description of CompanyDescription
+     * Gotten some different exception but the one I get now is the products validation that kicks in
+     * @param id
+     * @param model
+     * @return String
+     */
     @GetMapping("/company_descriptions/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
     {
-        //add product with id to the model view
         model.addAttribute("companyDescription", iCrudService.FindById(id));
         return "/company_descriptions/update";
     }
 
-    //update product
+    /**
+     *  update CompanyDescription
+     */
     @PostMapping("/company_descriptions/update")
     public String Update(@ModelAttribute @Valid CompanyDescription companyDescription, BindingResult resultCompanyDescription, Model model)
     {

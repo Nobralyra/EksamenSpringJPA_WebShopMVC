@@ -56,6 +56,18 @@ public class ProductController
         return "/products/create";
     }
 
+    /**
+     * For some reason I can validate on descriptionCompany.
+     * Even when I try to do it after the Product is saved in the database.
+     * It says the field is null and I also sometimes get an exception that tells it can convert a Long to a String
+     * I do not get that...
+     * @param product
+     * @param resultProduct
+     * @param companyDescription
+     * @param resultCompanyDescription
+     * @param model
+     * @return String
+     */
     @PostMapping("/products/create")
     public String CreateProduct(@Valid @ModelAttribute ("product") Product product, BindingResult resultProduct,
                                 @Valid @ModelAttribute ("companyDescription") CompanyDescription companyDescription,
@@ -81,6 +93,7 @@ public class ProductController
 
         return "redirect:/";
     }
+
 
     @GetMapping({"/products/details/{id}"})
     public String Detail(@PathVariable("id") long id, Model model)

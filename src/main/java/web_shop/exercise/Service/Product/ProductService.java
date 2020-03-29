@@ -29,6 +29,12 @@ public class ProductService implements ICrudService<Product, Long>
         iCrudProductRepository.save(product);
     }
 
+    /**
+     * Why the if else look like this
+     * https://dzone.com/articles/application-monitoring-with-spring-boot
+     * @param id
+     * @return Product
+     */
     @Override
     public Product FindById(Long id)
     {
@@ -36,7 +42,10 @@ public class ProductService implements ICrudService<Product, Long>
         return productOptional.orElse(null);
     }
 
-
+    /**
+     * For each that add all the elements from the database to a list
+     * @return List<Product>
+     */
     @Override
     public List<Product> FindAll()
     {

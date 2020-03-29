@@ -26,6 +26,12 @@ public class CategoryService implements ICrudService<Category, Long>
         iCrudCategoryRepository.save(category);
     }
 
+    /**
+     * Why the if else look like this
+     * https://dzone.com/articles/application-monitoring-with-spring-boot
+     * @param id
+     * @return Category
+     */
     @Override
     public Category FindById(Long id)
     {
@@ -33,6 +39,10 @@ public class CategoryService implements ICrudService<Category, Long>
         return categoryOptional.orElse(null);
     }
 
+    /**
+     * For each that add all the elements from the database to a list
+     * @return List<Category>
+     */
     @Override
     public List<Category> FindAll()
     {

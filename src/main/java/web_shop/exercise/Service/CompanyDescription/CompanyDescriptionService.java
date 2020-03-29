@@ -26,6 +26,12 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
         iCrudCompanyDescriptionRepository.save(companyDescription);
     }
 
+    /**
+     * Why the if else look like this
+     * https://dzone.com/articles/application-monitoring-with-spring-boot
+     * @param id
+     * @return CompanyDescription
+     */
     @Override
     public CompanyDescription FindById(Long id)
     {
@@ -33,6 +39,10 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
         return companyDescriptionOptional.orElse(null);
     }
 
+    /**
+     * For each that add all the elements from the database to a list
+     * @return List<CompanyDescription>
+     */
     @Override
     public List<CompanyDescription> FindAll()
     {
