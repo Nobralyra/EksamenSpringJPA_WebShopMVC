@@ -18,7 +18,12 @@ public class Category
     @Size(min = 1, max = 35)
     private String categoryName;
 
-    //On the joined table
+    /**
+     * On the joined table
+     * If you try to delete a category and it has relation with one or more products, it will cause an exception
+     * Cannot delete or update a parent row: a foreign key constraint fails (`database_web_shop`.`product_category`,
+     * CONSTRAINT `FKkud35ls1d40wpjb5htpp14q4e` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`))
+     */
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories",
             cascade = {
                     CascadeType.PERSIST,
