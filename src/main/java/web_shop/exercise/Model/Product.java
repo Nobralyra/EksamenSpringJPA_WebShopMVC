@@ -23,7 +23,6 @@ public class Product
     @Min(0)
     private double price;
 
-
     @NotBlank(message = "Please insert description of product")
     @Length(max=1000)
     private String productDescription;
