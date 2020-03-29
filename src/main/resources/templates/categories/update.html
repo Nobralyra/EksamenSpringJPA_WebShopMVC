@@ -20,7 +20,7 @@
             </div>
 
             <div class="form-group col-md-6">
-                <label for="ProductName">Kategori:</label>
+                <label for="ProductName">Produkter:</label>
                 <select class="form-control col-md-6" id="ProductName" th:field="*{products}" multiple>
                     <option th:each="Products : ${product}"
                             th:value="${Products.productId}"
