@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import web_shop.exercise.Model.CompanyDescription;
-import web_shop.exercise.Model.Product;
 import web_shop.exercise.Service.ICrudService;
 
 import javax.validation.Valid;
@@ -54,7 +53,7 @@ public class CompanyDescriptionController
             return "/company_descriptions/update";
         }
 
-        return "redirect:/";
+        return "redirect:/company_descriptions";
     }
 
     @GetMapping("/company_descriptions/delete/{id}")
