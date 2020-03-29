@@ -16,7 +16,7 @@ import web_shop.exercise.Service.ICrudService;
 import javax.validation.Valid;
 
 @Controller
-public class IndexController
+public class ProductController
 {
     private final ICrudService<Product, Long> iProductCrudService;
     private final ICrudService<Company, Long> iCompanyCrudService;
@@ -24,7 +24,7 @@ public class IndexController
     private final ICrudService<Category, Long> iCategoryCrudService;
     
     
-    public IndexController(ICrudService<Product, Long> iProductCrudService, ICrudService<Company, Long> iCompanyCrudService, ICrudService<CompanyDescription, Long> iCompanyDescriptionCrudService, ICrudService<Category, Long> iCategoryCrudService)
+    public ProductController(ICrudService<Product, Long> iProductCrudService, ICrudService<Company, Long> iCompanyCrudService, ICrudService<CompanyDescription, Long> iCompanyDescriptionCrudService, ICrudService<Category, Long> iCategoryCrudService)
     {
         this.iProductCrudService = iProductCrudService;
         this.iCompanyCrudService = iCompanyCrudService;
