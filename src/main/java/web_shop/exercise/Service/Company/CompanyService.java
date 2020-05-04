@@ -20,7 +20,7 @@ public class CompanyService implements ICrudService<Company, Long>
     }
 
     @Override
-    public void Save(Company company)
+    public void save(Company company)
     {
         iCrudCompanyRepository.save(company);
     }
@@ -32,7 +32,7 @@ public class CompanyService implements ICrudService<Company, Long>
      * @return Company
      */
     @Override
-    public Company FindById(Long id)
+    public Company findById(Long id)
     {
         Optional<Company> companyOptional = iCrudCompanyRepository.findById(id);
         return companyOptional.orElse(null);
@@ -43,7 +43,7 @@ public class CompanyService implements ICrudService<Company, Long>
      * @return List<Company>
      */
     @Override
-    public List<Company> FindAll()
+    public List<Company> findAll()
     {
         List<Company> companyList = new ArrayList<>();
         iCrudCompanyRepository.findAll().forEach(companyList::add);
@@ -53,10 +53,9 @@ public class CompanyService implements ICrudService<Company, Long>
 
 
     @Override
-    public void DeleteByID(Long id)
+    public void deleteByID(Long id)
     {
         iCrudCompanyRepository.deleteById(id);
-
     }
 
 }

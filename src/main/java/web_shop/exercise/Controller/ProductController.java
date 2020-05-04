@@ -33,24 +33,23 @@ public class ProductController
     }
 
     @GetMapping({"", "/"})
-    public String IndexPage(Model model)
+    public String indexPage(Model model)
     {
-        //add all products to view model from ICrudService
-        model.addAttribute("product", iProductCrudService.FindAll());
+        //add all products to model from ICrudService
+        model.addAttribute("product", iProductCrudService.findAll());
 
-        if(iCompanyCrudService.FindAll().size() == 0)
+        if(iCompanyCrudService.findAll().size() == 0)
         {
             return ("/companies/index");
         }
-
         return ("/products/index");
     }
 
     @GetMapping("/products/create")
-    public String Create(Product product, CompanyDescription companyDescription, Model model)
+    public String create(Product product, CompanyDescription companyDescription, Model model)
     {
-        model.addAttribute("category", iCategoryCrudService.FindAll());
-        model.addAttribute("company", iCompanyCrudService.FindAll());
+        model.addAttribute("category", iCategoryCrudService.findAll());
+        model.addAttribute("company", iCompanyCrudService.findAll());
         model.addAttribute("product", product);
 
         return "/products/create";
@@ -69,14 +68,14 @@ public class ProductController
      * @return String
      */
     @PostMapping("/products/create")
-    public String CreateProduct(@Valid @ModelAttribute ("product") Product product, BindingResult resultProduct,
+    public String createProduct(@Valid @ModelAttribute ("product") Product product, BindingResult resultProduct,
                                 @Valid @ModelAttribute ("companyDescription") CompanyDescription companyDescription,
                                 BindingResult resultCompanyDescription,
                                 Model model)
     {
         if(!resultProduct.hasErrors())
         {
-            iProductCrudService.Save(product);
+            iProductCrudService.save(product);
         }
         else
         {
@@ -84,63 +83,58 @@ public class ProductController
             model.addAttribute("resultCompanyDescription", resultCompanyDescription);
             model.addAttribute("product", product);
             model.addAttribute("companyDescription", companyDescription);
-            model.addAttribute("category", iCategoryCrudService.FindAll());
-            model.addAttribute("company", iCompanyCrudService.FindAll());
+            model.addAttribute("category", iCategoryCrudService.findAll());
+            model.addAttribute("company", iCompanyCrudService.findAll());
 
             return "/products/create";
         }
-
-
         return "redirect:/";
     }
 
-
     @GetMapping({"/products/details/{id}"})
-    public String Detail(@PathVariable("id") long id, Model model)
+    public String detail(@PathVariable("id") long id, Model model)
     {
         //add all products to view model from ICrudService
-        model.addAttribute("product", iProductCrudService.FindById(id));
-        model.addAttribute("category", iCategoryCrudService.FindAll());
+        model.addAttribute("product", iProductCrudService.findById(id));
+        model.addAttribute("category", iCategoryCrudService.findAll());
 
         return ("/products/details");
     }
 
     //use PathVariable to fetch id from list on web page
     @GetMapping("/products/update/{id}")
-    public String Update(@PathVariable("id") long id, Model model)
+    public String update(@PathVariable("id") long id, Model model)
     {
         //add product with id to the model view
-        model.addAttribute("product", iProductCrudService.FindById(id));
-        model.addAttribute("company", iCompanyCrudService.FindById(id));
-        model.addAttribute("category", iCategoryCrudService.FindAll());
+        model.addAttribute("product", iProductCrudService.findById(id));
+        model.addAttribute("company", iCompanyCrudService.findById(id));
+        model.addAttribute("category", iCategoryCrudService.findAll());
 
         return "/products/update";
     }
 
     //update product
     @PostMapping("/products/update")
-    public String Update(@ModelAttribute @Valid Product product, BindingResult resultProduct, Model model)
+    public String updateProduct(@ModelAttribute @Valid Product product, BindingResult resultProduct, Model model)
     {
         if(!resultProduct.hasErrors())
         {
-            iProductCrudService.Save(product);
+            iProductCrudService.save(product);
         }
         else
         {
             model.addAttribute("resultProduct", resultProduct);
-
-            model.addAttribute("category", iCategoryCrudService.FindAll());
+            model.addAttribute("category", iCategoryCrudService.findAll());
 
             return "/products/update";
         }
-
         return "redirect:/";
     }
 
     @GetMapping("/products/delete/{id}")
-    public String Delete(@PathVariable("id") long id)
+    public String delete(@PathVariable("id") long id)
     {
-        iProductCrudService.DeleteByID(id);
+        iProductCrudService.deleteByID(id);
 
         return "redirect:/";
     }

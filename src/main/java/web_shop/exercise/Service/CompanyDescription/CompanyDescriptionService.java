@@ -19,9 +19,8 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
         this.iCrudCompanyDescriptionRepository = iCrudCompanyDescriptionRepository;
     }
 
-
     @Override
-    public void Save(CompanyDescription companyDescription)
+    public void save(CompanyDescription companyDescription)
     {
         iCrudCompanyDescriptionRepository.save(companyDescription);
     }
@@ -33,7 +32,7 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
      * @return CompanyDescription
      */
     @Override
-    public CompanyDescription FindById(Long id)
+    public CompanyDescription findById(Long id)
     {
         Optional<CompanyDescription> companyDescriptionOptional = iCrudCompanyDescriptionRepository.findById(id);
         return companyDescriptionOptional.orElse(null);
@@ -44,7 +43,7 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
      * @return List<CompanyDescription>
      */
     @Override
-    public List<CompanyDescription> FindAll()
+    public List<CompanyDescription> findAll()
     {
         List<CompanyDescription> companyDescriptionList = new ArrayList<>();
         iCrudCompanyDescriptionRepository.findAll().forEach(companyDescriptionList::add);
@@ -52,11 +51,9 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
         return companyDescriptionList;
     }
 
-
     @Override
-    public void DeleteByID(Long id)
+    public void deleteByID(Long id)
     {
         iCrudCompanyDescriptionRepository.deleteById(id);
     }
-
 }

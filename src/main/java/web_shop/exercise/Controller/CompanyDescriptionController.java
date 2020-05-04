@@ -25,7 +25,7 @@ public class CompanyDescriptionController
     @GetMapping({"/company_descriptions"})
     public String CompanyDescriptionPage(Model model)
     {
-        model.addAttribute("companyDescription", iCrudService.FindAll());
+        model.addAttribute("companyDescription", iCrudService.findAll());
         return ("/company_descriptions/index");
     }
 
@@ -42,7 +42,7 @@ public class CompanyDescriptionController
     @GetMapping("/company_descriptions/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
     {
-        model.addAttribute("companyDescription", iCrudService.FindById(id));
+        model.addAttribute("companyDescription", iCrudService.findById(id));
         return "/company_descriptions/update";
     }
 
@@ -54,7 +54,7 @@ public class CompanyDescriptionController
     {
         if(!resultCompanyDescription.hasErrors())
         {
-            iCrudService.Save(companyDescription);
+            iCrudService.save(companyDescription);
         }
         else
         {
@@ -69,7 +69,7 @@ public class CompanyDescriptionController
     @GetMapping("/company_descriptions/delete/{id}")
     public String Delete(@PathVariable("id") long id)
     {
-        iCrudService.DeleteByID(id);
+        iCrudService.deleteByID(id);
 
         return "redirect:/company_descriptions";
     }

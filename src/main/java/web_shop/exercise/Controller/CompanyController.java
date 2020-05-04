@@ -25,7 +25,7 @@ public class CompanyController
     @GetMapping({"/companies"})
     public String CompanyPage(Model model)
     {
-        model.addAttribute("company", iCrudService.FindAll());
+        model.addAttribute("company", iCrudService.findAll());
         return ("/companies/index");
     }
 
@@ -41,14 +41,13 @@ public class CompanyController
     {
         if(!resultCompany.hasErrors())
         {
-            iCrudService.Save(company);
+            iCrudService.save(company);
         }
         else
         {
             model.addAttribute("resultCompany", resultCompany);
             return "/companies/create";
         }
-
         return "redirect:/companies";
     }
 
@@ -57,7 +56,7 @@ public class CompanyController
     public String Update(@PathVariable("id") long id, Model model)
     {
         //add product with id to the model view
-        model.addAttribute("company", iCrudService.FindById(id));
+        model.addAttribute("company", iCrudService.findById(id));
         return "/companies/update";
     }
 
@@ -67,7 +66,7 @@ public class CompanyController
     {
         if(!resultCompany.hasErrors())
         {
-            iCrudService.Save(company);
+            iCrudService.save(company);
         }
         else
         {
@@ -80,9 +79,8 @@ public class CompanyController
     @GetMapping("/companies/delete/{id}")
     public String Delete(@PathVariable("id") long id)
     {
-        iCrudService.DeleteByID(id);
+        iCrudService.deleteByID(id);
 
         return "redirect:/companies";
     }
-
 }

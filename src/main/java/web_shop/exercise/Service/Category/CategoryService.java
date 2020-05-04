@@ -19,9 +19,8 @@ public class CategoryService implements ICrudService<Category, Long>
         this.iCrudCategoryRepository = iCrudCategoryRepository;
     }
 
-
     @Override
-    public void Save(Category category)
+    public void save(Category category)
     {
         iCrudCategoryRepository.save(category);
     }
@@ -33,7 +32,7 @@ public class CategoryService implements ICrudService<Category, Long>
      * @return Category
      */
     @Override
-    public Category FindById(Long id)
+    public Category findById(Long id)
     {
         Optional<Category> categoryOptional = iCrudCategoryRepository.findById(id);
         return categoryOptional.orElse(null);
@@ -44,7 +43,7 @@ public class CategoryService implements ICrudService<Category, Long>
      * @return List<Category>
      */
     @Override
-    public List<Category> FindAll()
+    public List<Category> findAll()
     {
         List<Category> categoryList = new ArrayList<>();
         iCrudCategoryRepository.findAll().forEach(categoryList::add);
@@ -53,10 +52,9 @@ public class CategoryService implements ICrudService<Category, Long>
     }
 
     @Override
-    public void DeleteByID(Long id)
+    public void deleteByID(Long id)
     {
         iCrudCategoryRepository.deleteById(id);
-
     }
 
 }

@@ -1,14 +1,12 @@
 package web_shop.exercise.Service.Product;
 
 import org.springframework.stereotype.Service;
-import web_shop.exercise.Model.CompanyDescription;
 import web_shop.exercise.Model.Product;
 
 import web_shop.exercise.Repository.ICrudProductRepository;
 import web_shop.exercise.Service.ICrudService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,9 +20,8 @@ public class ProductService implements ICrudService<Product, Long>
         this.iCrudProductRepository = iCrudProductRepository;
     }
 
-
     @Override
-    public void Save(Product product)
+    public void save(Product product)
     {
         iCrudProductRepository.save(product);
     }
@@ -36,7 +33,7 @@ public class ProductService implements ICrudService<Product, Long>
      * @return Product
      */
     @Override
-    public Product FindById(Long id)
+    public Product findById(Long id)
     {
         Optional<Product> productOptional = iCrudProductRepository.findById(id);
         return productOptional.orElse(null);
@@ -47,7 +44,7 @@ public class ProductService implements ICrudService<Product, Long>
      * @return List<Product>
      */
     @Override
-    public List<Product> FindAll()
+    public List<Product> findAll()
     {
         List<Product> productList = new ArrayList<>();
 
@@ -63,11 +60,9 @@ public class ProductService implements ICrudService<Product, Long>
         return productList;
     }
 
-
     @Override
-    public void DeleteByID(Long id)
+    public void deleteByID(Long id)
     {
         iCrudProductRepository.deleteById(id);
     }
-
 }

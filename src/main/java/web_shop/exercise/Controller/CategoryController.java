@@ -13,7 +13,6 @@ import web_shop.exercise.Service.ICrudService;
 
 import javax.validation.Valid;
 
-
 @Controller
 public class CategoryController
 {
@@ -29,7 +28,7 @@ public class CategoryController
     @GetMapping({"/categories"})
     public String CategoryPage(Model model)
     {
-        model.addAttribute("category", iCategoryCrudService.FindAll());
+        model.addAttribute("category", iCategoryCrudService.findAll());
 
         return ("/categories/index");
     }
@@ -46,14 +45,13 @@ public class CategoryController
     {
         if(!resultCategory.hasErrors())
         {
-            iCategoryCrudService.Save(category);
+            iCategoryCrudService.save(category);
         }
         else
         {
             model.addAttribute("resultCategory", resultCategory);
             return "/categories/create";
         }
-
         return "redirect:/categories";
     }
 
@@ -61,8 +59,8 @@ public class CategoryController
     public String Detail(@PathVariable("id") long id, Model model)
     {
         //add all products to view model from ICrudService
-        model.addAttribute("category", iCategoryCrudService.FindById(id));
-        model.addAttribute("product", iProductCrudService.FindAll());
+        model.addAttribute("category", iCategoryCrudService.findById(id));
+        model.addAttribute("product", iProductCrudService.findAll());
         return ("/categories/details");
     }
 
@@ -71,8 +69,8 @@ public class CategoryController
     public String Update(@PathVariable("id") long id, Model model)
     {
         //add product with id to the model view
-        model.addAttribute("category", iCategoryCrudService.FindById(id));
-        model.addAttribute("product", iProductCrudService.FindAll());
+        model.addAttribute("category", iCategoryCrudService.findById(id));
+        model.addAttribute("product", iProductCrudService.findAll());
         return "/categories/update";
     }
 
@@ -82,21 +80,19 @@ public class CategoryController
     {
         if(!resultCategory.hasErrors())
         {
-            iCategoryCrudService.Save(category);
+            iCategoryCrudService.save(category);
         }
         else
         {
             model.addAttribute("resultCategory", resultCategory);
             return "/categories/update";
         }
-
         return "redirect:/categories";
     }
 
     @GetMapping("/categories/delete/{id}")
     public String delete(@PathVariable("id") long id){
-        iCategoryCrudService.DeleteByID(id);
+        iCategoryCrudService.deleteByID(id);
         return "redirect:/categories";
     }
-
 }
