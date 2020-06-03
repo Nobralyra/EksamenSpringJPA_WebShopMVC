@@ -55,6 +55,7 @@ public class CategoryController
         return "redirect:/categories";
     }
 
+    //Use @PathVariable to bound id from URL to method parameter
     @GetMapping({"/categories/details/{id}"})
     public String Detail(@PathVariable("id") long id, Model model)
     {
@@ -63,7 +64,6 @@ public class CategoryController
         return ("/categories/details");
     }
 
-    //use PathVariable to fetch id from list on web page
     @GetMapping("/categories/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
     {

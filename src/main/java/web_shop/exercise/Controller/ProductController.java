@@ -79,6 +79,7 @@ public class ProductController
         return "redirect:/";
     }
 
+    //Use @PathVariable to bound id from URL to method parameter
     @GetMapping({"/products/details/{id}"})
     public String detail(@PathVariable("id") long id, Model model)
     {
@@ -87,8 +88,7 @@ public class ProductController
 
         return ("/products/details");
     }
-
-    //use PathVariable to fetch id from list on web page
+    
     @GetMapping("/products/update/{id}")
     public String update(@PathVariable("id") long id, Model model)
     {

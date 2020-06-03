@@ -29,7 +29,7 @@ public class CompanyDescriptionController
         return ("/company_descriptions/index");
     }
 
-    //use PathVariable to fetch id from list on web page
+    //Use @PathVariable to bound id from URL to method parameter
     @GetMapping("/company_descriptions/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
     {
