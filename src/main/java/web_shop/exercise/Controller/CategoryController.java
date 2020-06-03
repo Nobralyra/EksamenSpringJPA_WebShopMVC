@@ -58,7 +58,6 @@ public class CategoryController
     @GetMapping({"/categories/details/{id}"})
     public String Detail(@PathVariable("id") long id, Model model)
     {
-        //add all products to view model from ICrudService
         model.addAttribute("category", iCategoryCrudService.findById(id));
         model.addAttribute("product", iProductCrudService.findAll());
         return ("/categories/details");
@@ -68,13 +67,11 @@ public class CategoryController
     @GetMapping("/categories/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
     {
-        //add product with id to the model view
         model.addAttribute("category", iCategoryCrudService.findById(id));
         model.addAttribute("product", iProductCrudService.findAll());
         return "/categories/update";
     }
 
-    //update product
     @PostMapping("/categories/update")
     public String Update(@ModelAttribute @Valid Category category, BindingResult resultCategory, Model model)
     {

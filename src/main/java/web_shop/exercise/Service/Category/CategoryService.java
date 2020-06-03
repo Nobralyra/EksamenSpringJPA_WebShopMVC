@@ -25,28 +25,28 @@ public class CategoryService implements ICrudService<Category, Long>
         iCrudCategoryRepository.save(category);
     }
 
-    /**
-     * Why the if else look like this
-     * https://dzone.com/articles/application-monitoring-with-spring-boot
-     * @param id
-     * @return Category
-     */
     @Override
     public Category findById(Long id)
     {
         Optional<Category> categoryOptional = iCrudCategoryRepository.findById(id);
-        return categoryOptional.orElse(null);
+
+        if (!categoryOptional.isPresent())
+        {
+            throw new RuntimeException("Product not found!");
+        }
+
+        return categoryOptional.get();
     }
 
-    /**
-     * For each that add all the elements from the database to a list
-     * @return List<Category>
-     */
     @Override
     public List<Category> findAll()
     {
         List<Category> categoryList = new ArrayList<>();
-        iCrudCategoryRepository.findAll().forEach(categoryList::add);
+
+        for (Category categories: iCrudCategoryRepository.findAll())
+        {
+            categoryList.add(categories);
+        }
 
         return categoryList;
     }
@@ -56,5 +56,4 @@ public class CategoryService implements ICrudService<Category, Long>
     {
         iCrudCategoryRepository.deleteById(id);
     }
-
 }

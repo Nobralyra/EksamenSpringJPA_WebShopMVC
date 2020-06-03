@@ -26,37 +26,28 @@ public class ProductService implements ICrudService<Product, Long>
         iCrudProductRepository.save(product);
     }
 
-    /**
-     * Why the if else look like this
-     * https://dzone.com/articles/application-monitoring-with-spring-boot
-     * @param id
-     * @return Product
-     */
     @Override
     public Product findById(Long id)
     {
         Optional<Product> productOptional = iCrudProductRepository.findById(id);
-        return productOptional.orElse(null);
+
+        if (!productOptional.isPresent())
+        {
+            throw new RuntimeException("Product not found!");
+        }
+
+        return productOptional.get();
     }
 
-    /**
-     * For each that add all the elements from the database to a list
-     * @return List<Product>
-     */
     @Override
     public List<Product> findAll()
     {
         List<Product> productList = new ArrayList<>();
 
-        /*
-        for (Product product: iCrudProductRepository.findAll())
+        for (Product products: iCrudProductRepository.findAll())
         {
-            productList.add(product);
+            productList.add(products);
         }
-         */
-        //Instead you can do
-        iCrudProductRepository.findAll().forEach(productList::add);
-
         return productList;
     }
 

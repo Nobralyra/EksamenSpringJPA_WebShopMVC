@@ -27,6 +27,7 @@ public class Product
     @Length(max=1000)
     private String productDescription;
 
+    //Owner
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -36,12 +37,12 @@ public class Product
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     protected List<Category> categories = new ArrayList<>();
 
+    //Child (owner)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="company_id", nullable = false)
     protected Company company;
 
-    //Product is the owner of CompanyDescription
-    //If we delete a Product that is going to persist down and delete CompanyDescription.
+    //Product is parent of CompanyDescription
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "product")

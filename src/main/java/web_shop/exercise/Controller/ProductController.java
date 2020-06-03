@@ -46,7 +46,7 @@ public class ProductController
     }
 
     @GetMapping("/products/create")
-    public String create(Product product, CompanyDescription companyDescription, Model model)
+    public String create(Product product, Model model)
     {
         model.addAttribute("category", iCategoryCrudService.findAll());
         model.addAttribute("company", iCompanyCrudService.findAll());
@@ -55,18 +55,6 @@ public class ProductController
         return "/products/create";
     }
 
-    /**
-     * For some reason I can validate on descriptionCompany.
-     * Even when I try to do it after the Product is saved in the database.
-     * It says the field is null and I also sometimes get an exception that tells it can convert a Long to a String
-     * I do not get that...
-     * @param product
-     * @param resultProduct
-     * @param companyDescription
-     * @param resultCompanyDescription
-     * @param model
-     * @return String
-     */
     @PostMapping("/products/create")
     public String createProduct(@Valid @ModelAttribute ("product") Product product, BindingResult resultProduct,
                                 @Valid @ModelAttribute ("companyDescription") CompanyDescription companyDescription,
@@ -94,7 +82,6 @@ public class ProductController
     @GetMapping({"/products/details/{id}"})
     public String detail(@PathVariable("id") long id, Model model)
     {
-        //add all products to view model from ICrudService
         model.addAttribute("product", iProductCrudService.findById(id));
         model.addAttribute("category", iCategoryCrudService.findAll());
 
@@ -105,7 +92,6 @@ public class ProductController
     @GetMapping("/products/update/{id}")
     public String update(@PathVariable("id") long id, Model model)
     {
-        //add product with id to the model view
         model.addAttribute("product", iProductCrudService.findById(id));
         model.addAttribute("company", iCompanyCrudService.findById(id));
         model.addAttribute("category", iCategoryCrudService.findAll());
@@ -113,7 +99,6 @@ public class ProductController
         return "/products/update";
     }
 
-    //update product
     @PostMapping("/products/update")
     public String updateProduct(@ModelAttribute @Valid Product product, BindingResult resultProduct, Model model)
     {

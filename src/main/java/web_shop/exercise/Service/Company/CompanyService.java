@@ -2,6 +2,7 @@ package web_shop.exercise.Service.Company;
 
 import org.springframework.stereotype.Service;
 import web_shop.exercise.Domain.Company;
+import web_shop.exercise.Domain.CompanyDescription;
 import web_shop.exercise.Repository.ICrudCompanyRepository;
 import web_shop.exercise.Service.ICrudService;
 
@@ -25,37 +26,34 @@ public class CompanyService implements ICrudService<Company, Long>
         iCrudCompanyRepository.save(company);
     }
 
-    /**
-     * Why the if else look like this
-     * https://dzone.com/articles/application-monitoring-with-spring-boot
-     * @param id
-     * @return Company
-     */
     @Override
     public Company findById(Long id)
     {
         Optional<Company> companyOptional = iCrudCompanyRepository.findById(id);
-        return companyOptional.orElse(null);
+
+        if (!companyOptional.isPresent())
+        {
+            throw new RuntimeException("Product not found!");
+        }
+
+        return companyOptional.get();
     }
 
-    /**
-     * For each that add all the elements from the database to a list
-     * @return List<Company>
-     */
     @Override
     public List<Company> findAll()
     {
         List<Company> companyList = new ArrayList<>();
-        iCrudCompanyRepository.findAll().forEach(companyList::add);
+        for (Company companies: iCrudCompanyRepository.findAll())
+        {
+            companyList.add(companies);
+        }
 
         return companyList;
     }
-
 
     @Override
     public void deleteByID(Long id)
     {
         iCrudCompanyRepository.deleteById(id);
     }
-
 }

@@ -25,29 +25,27 @@ public class CompanyDescriptionService implements ICrudService<CompanyDescriptio
         iCrudCompanyDescriptionRepository.save(companyDescription);
     }
 
-    /**
-     * Why the if else look like this
-     * https://dzone.com/articles/application-monitoring-with-spring-boot
-     * @param id
-     * @return CompanyDescription
-     */
     @Override
     public CompanyDescription findById(Long id)
     {
         Optional<CompanyDescription> companyDescriptionOptional = iCrudCompanyDescriptionRepository.findById(id);
-        return companyDescriptionOptional.orElse(null);
+
+        if (!companyDescriptionOptional.isPresent())
+        {
+            throw new RuntimeException("Product not found!");
+        }
+
+        return companyDescriptionOptional.get();
     }
 
-    /**
-     * For each that add all the elements from the database to a list
-     * @return List<CompanyDescription>
-     */
     @Override
     public List<CompanyDescription> findAll()
     {
         List<CompanyDescription> companyDescriptionList = new ArrayList<>();
-        iCrudCompanyDescriptionRepository.findAll().forEach(companyDescriptionList::add);
-
+        for (CompanyDescription companyDescriptions: iCrudCompanyDescriptionRepository.findAll())
+        {
+            companyDescriptionList.add(companyDescriptions);
+        }
         return companyDescriptionList;
     }
 

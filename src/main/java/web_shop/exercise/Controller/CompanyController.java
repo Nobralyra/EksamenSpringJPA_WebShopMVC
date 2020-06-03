@@ -55,12 +55,10 @@ public class CompanyController
     @GetMapping("/companies/update/{id}")
     public String Update(@PathVariable("id") long id, Model model)
     {
-        //add product with id to the model view
         model.addAttribute("company", iCrudService.findById(id));
         return "/companies/update";
     }
 
-    //update product
     @PostMapping("/companies/update")
     public String Update(@ModelAttribute @Valid Company company, BindingResult resultCompany, Model model)
     {

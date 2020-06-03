@@ -13,7 +13,7 @@ public class CompanyDescription
     @NotBlank(message = "Please insert description from company")
     private String descriptionCompany;
 
-    //If we delete the Product object, the CompanyDescription will remain inside the database.
+    //Child (owner)
     @OneToOne(fetch = FetchType.LAZY, optional = false, cascade =  CascadeType.REMOVE)
     @JoinColumn(name = "product_id")
     @MapsId
@@ -28,7 +28,6 @@ public class CompanyDescription
         this.companyDescriptionId = companyDescriptionId;
         this.descriptionCompany = descriptionCompany;
         this.product = product;
-
     }
 
     public long getCompanyDescriptionId()
