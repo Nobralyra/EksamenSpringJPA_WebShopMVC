@@ -1,7 +1,7 @@
 package web_shop.exercise.Service.Category;
 
 import org.springframework.stereotype.Service;
-import web_shop.exercise.Model.Category;
+import web_shop.exercise.Domain.Category;
 import web_shop.exercise.Repository.ICrudCategoryRepository;
 import web_shop.exercise.Service.ICrudService;
 

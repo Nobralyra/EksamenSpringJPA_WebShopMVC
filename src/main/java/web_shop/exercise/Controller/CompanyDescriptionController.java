@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import web_shop.exercise.Model.CompanyDescription;
+import web_shop.exercise.Domain.CompanyDescription;
 import web_shop.exercise.Service.ICrudService;
 
 import javax.validation.Valid;

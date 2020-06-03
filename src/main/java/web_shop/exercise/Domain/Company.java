@@ -1,4 +1,4 @@
-package web_shop.exercise.Model;
+package web_shop.exercise.Domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

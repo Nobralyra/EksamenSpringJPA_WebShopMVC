@@ -1,7 +1,7 @@
 package web_shop.exercise.Service.Company;
 
 import org.springframework.stereotype.Service;
-import web_shop.exercise.Model.Company;
+import web_shop.exercise.Domain.Company;
 import web_shop.exercise.Repository.ICrudCompanyRepository;
 import web_shop.exercise.Service.ICrudService;
 

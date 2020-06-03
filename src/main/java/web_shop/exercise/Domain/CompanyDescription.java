@@ -1,6 +1,4 @@
-package web_shop.exercise.Model;
-
-import org.hibernate.validator.constraints.Length;
+package web_shop.exercise.Domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
