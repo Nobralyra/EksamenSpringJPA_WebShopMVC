@@ -91,7 +91,8 @@ public class CategoryController
     }
 
     @GetMapping("/categories/delete/{id}")
-    public String delete(@PathVariable("id") long id){
+    public String delete(@PathVariable("id") long id)
+    {
         iCategoryCrudService.deleteByID(id);
         return "redirect:/categories";
     }
