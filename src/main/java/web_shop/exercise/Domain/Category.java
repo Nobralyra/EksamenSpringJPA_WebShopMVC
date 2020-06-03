@@ -23,11 +23,11 @@ public class Category
      * Cannot delete or update a parent row: a foreign key constraint fails (`database_web_shop`.`product_category`,
      * CONSTRAINT `FKkud35ls1d40wpjb5htpp14q4e` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`))
      */
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories",
+    @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
-            })
+            }, mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
 
     public Category()
