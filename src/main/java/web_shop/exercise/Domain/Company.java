@@ -17,7 +17,9 @@ public class Company
     private String companyName;
 
     //mappedby is the tablename
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "company")
     protected List<Product> products;
 
     public Company()

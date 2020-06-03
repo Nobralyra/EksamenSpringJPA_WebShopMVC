@@ -36,7 +36,7 @@ public class Product
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     protected List<Category> categories = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER, optional=false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="company_id", nullable = false)
     protected Company company;
 
